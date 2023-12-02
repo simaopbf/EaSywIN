@@ -57,7 +57,8 @@ nav .menu{
     transition: all 0.3s ease;
 }
 .menu ul li a:hover{
-    background: #00c8ff;
+    font-weight: 530;
+    background:whitesmoke;
     color:#000000;
 }
 .center{

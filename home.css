@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     font-family:"Poppins", sans-serif;
+    scroll-behavior: smooth;
 }
 body{
     width: 100%;
@@ -49,6 +50,9 @@ nav .menu{
 .menu ul li:first-child{
     margin-left: 0px;
 }
+.menu ul li:nth-child(2):active{
+    transform: scale(2);
+}
 .menu ul li a{
     text-decoration: none;
     color:#fff;
@@ -56,7 +60,7 @@ nav .menu{
     font-weight: 500;
     padding: 8px 15px;
     border-radius: 25px;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out;
 }
 .menu ul li a:hover{
     font-weight: 530;
@@ -70,7 +74,7 @@ nav .menu{
 
 .center{
     position: absolute;
-    margin-top: calc(50vh - 70px);
+    margin-top: calc(50vh - 90px);
     width: 100%;
     text-align: center;
     height: 50vh;
@@ -79,6 +83,29 @@ nav .menu{
     color: #fff;
     font-size:25px;
     font-weight:600;
+}
+
+.center ul li{
+    list-style: none;
+}
+.center ul{
+    margin-top: 25px;
+    display: inline-flex;
+}
+.center ul li a{
+    margin-inline: 15px;
+    text-decoration: none;
+    color:#fff; opacity: 0.6;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 30px;
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out; 
+}
+.center ul li a:hover{
+    font-weight: 530;
+    background:whitesmoke;
+    color:#000000;
 }
 
 .image_top{
@@ -93,16 +120,37 @@ nav .menu{
     vertical-align: bottom;
 
 }
-.heighttotal{
-    height: 1000px;
-}
-.howitworks{
+
+#howitworks{
     top:100vh;
     position: absolute;
+    display: inline-flex;
+
 }
 .image_reserve{
     width: 50%;
+    
 
 }
-
+.reservation{
+    width:50%;
+    margin-left: 4vh;
+    margin-right: 4vh;
+    align-items: center;
+}
+.reservation h3{
+    font-weight: bold;
+    color:#fff;
+    margin-top: 5vh;
+    text-align: center;
+}
+.reservation p{
+    color:#fff;
+    margin-top: 3vh;
+    text-align: justify;
+    align-items: center;
+}
+.heighttotal{
+    height: 10000px;
+}
 

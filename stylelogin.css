@@ -7,18 +7,68 @@
     font-family:"Poppins", sans-serif;
 }
 
+
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
     min-height: 100vh;
     background: url(pexels-patrik-felker-6220559.jpg) no-repeat;
     background-size: cover;
     background-position: center;
 }
+nav{
+    position: fixed;
+    background: #1b1b1b;
+    width: 100%;
+    margin: auto;
+    padding: 10px 0;
+    z-index: 12;
+}
+nav .menu{
+    max-width: 1250px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+.menu .logo a{
+    text-decoration: none;
+    color:#fff;
+    font-size: 35px;
+    font-weight: 600;
+}
+.menu ul{
+    display: inline-flex;
+}
 
+.menu ul li{
+    list-style: none;
+    margin-left: 7px;
+}
+
+.menu ul li:first-child{
+    margin-left: 0px;
+}
+
+.menu ul li a{
+    text-decoration: none;
+    color:#fff;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+.menu ul li a:hover{
+    font-weight: 530;
+    background:whitesmoke;
+    color:#000000;
+}
 .wrapper {
-    width: 420px;
+    height: 100%;
+    margin-top: 20vh;
+    width: 350px;
     background:transparent;
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
@@ -27,6 +77,7 @@ body {
     border-radius: 10px;
     padding: 30px 40px; 
 }
+
 
 .wrapper h1 {
     font-size: 36px;
@@ -64,7 +115,9 @@ body {
     transform: translateY(-50%);
     font-size: 20px;
 }
-
+.backgroundcolor{
+    border: 2px solid rgba(255, 255, 255, .2);
+}
 .wrapper .btn {
     width: 100%;
     height: 45px;

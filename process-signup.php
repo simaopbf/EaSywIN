@@ -2,7 +2,7 @@
 
 if ($_POST["password"] !== $_POST["password_confirmation"]) {
     $error_message="Passwords must match";
-    include('index.php');
+    include('registration.php');
     exit();
 }
 

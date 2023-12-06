@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html lang="eng">
 
-
 </head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge">
-    <meta name="viewport" content="widt=device-width, initial-scale=1.0">
-    <title> Sign Up</title>
-    <link rel="stylesheet" href="styleregister.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <style>
-        .error-message {
-            color: red !important;
-            font-weight: bold;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE-edge">
+<meta name="viewport" content="widt=device-width, initial-scale=1.0">
+<title>EasyWin Home</title>
+<link rel="stylesheet" href="home.css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <head>
-
 <body>
     <nav>
         <div class="menu">
@@ -25,76 +17,40 @@
             </div>
             <ul>
                 <li><a href="#">Maps</a> </li>
-                <li><a href="#">How it works</a> </li>    
-                <li><a class="backgroundcolor" href="Login.html">Login/ Sign up</a> </li>
+                <li><a href="#howitworks">How it works</a> </li>    
+                <li><a class="backgroundcolor" href="login.php">Login/ Sign up</a> </li>
     
             </ul>
         </div>
     </nav>
-
-    <div class="wrapper">
-        <form action="process-signup.php" method="post">
-            <h1>Sign Up</h1>
-
-            <div class="image-container">
-                <label for="profile-image-input" class="image-label">
-                    <img id="profile-image" src="profile.png" alt="Profile Image">
-                </label>
-                <input type="file" id="profile-image-input" style="display: none;" accept="image/*" onchange="displayImage(this)">
-            </div>
-
-
-            <div class="input-box">
-                <input type="text" id="username" name="username" placeholder="Your username" required>
-                <i class='bx bxs-user'></i>
-            </div>
-
-            <div class="input-box">
-                <input type="email" id="email" name="email" placeholder="Your e-mail" required>
-                <i class='bx bx-envelope'></i>
-            </div>
-
-            <div class="input-box">
-                <input type="tel"  id="phone" name="phone" placeholder="Your telephone" required>
-                <i class='bx bxs-phone' ></i>
-            </div>
-
-            <?php
-                if (isset($error_message)) {
-                    echo '<p class="error-message">' . $error_message . '</p>';
-                }
-            ?>
-            
-            <div class="input-box">
-                <input type="password" id="password" name="password" placeholder="Your password" required>
-                <i class='bx bxs-lock-alt'></i>
-            </div>
-
-            <div class="input-box">
-                <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm your password" required>
-                <i class='bx bxs-lock-alt'></i>
-            </div>
-
-            <button type="submit" class="btn">Sign Up</button>
-
-            <div class="register-link">
-                <p>Do you already have an account? <a href="Login.html">Login</a></p>
-            </div>
-
-            <script>
-                function displayImage(input) {
-                    var file = input.files[0];
-                    if (file) {
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                            document.getElementById('profile-image').src = e.target.result;
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                }
-            </script>
-        </form>
+    <div class="image_top">
+        <img src="pexels-patrik-felker-6220559.jpg">
     </div>
+
+    <div class="center">
+
+        <div class="title">Visiting friends has never been this easy</div>
+        <div>
+            <ul>
+                <li><a class="backgroundcolor"href="#">Announce</a></li>
+                <li><a class="backgroundcolor"href="#">Reserve</a></li>
+
+            </ul>
+        </div>
+    </div>
+    
+    <div id = "howitworks">
+        <div class="image_reserve"><img src="airbnb alugar.png"></div>
+        <div class="reservation">
+            <h3>Make reservations</h3>
+            <p>See which friends have available accomodations for you and decide for yourself based on weather, average costs and time of the year </p>
+
+        </div>
+
+    </div>
+    <div class="heighttotal"></div>
+
+    
 </body>
 
-<html>
+</html>

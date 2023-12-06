@@ -18,7 +18,7 @@
             <ul>
                 <li><a href="#">Maps</a> </li>
                 <li><a href="#howitworks">How it works</a> </li>    
-                <li><a class="backgroundcolor" href="login.php">Login/ Sign up</a> </li>
+                <li><a class="backgroundcolor" href="profile.php">Profile</a> </li>
     
             </ul>
         </div>
@@ -32,8 +32,8 @@
         <div class="title">Visiting friends has never been this easy</div>
         <div>
             <ul>
-                <li><a class="backgroundcolor"href="login.php">Announce</a></li>
-                <li><a class="backgroundcolor"href="login.php">Reserve</a></li>
+                <li><a class="backgroundcolor"href="announce.php">Announce</a></li>
+                <li><a class="backgroundcolor"href="reservation.php">Reserve</a></li>
 
             </ul>
         </div>

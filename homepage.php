@@ -13,7 +13,7 @@
     <nav>
         <div class="menu">
             <div class="logo">
-                <a href="homepage.html">EasyWIN</a>
+                <a href="homepage.php">EasyWIN</a>
             </div>
             <ul>
                 <li><a href="#">Maps</a> </li>

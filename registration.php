@@ -23,12 +23,7 @@
             <div class="logo">
                 <a href="homepage.php">EasyWIN</a>
             </div>
-            <ul>
-                <li><a href="#">Maps</a> </li>
-                <li><a href="#">How it works</a> </li>    
-                <li><a class="backgroundcolor" href="login.php">Login/ Sign up</a> </li>
-    
-            </ul>
+          
         </div>
     </nav>
 

@@ -40,17 +40,17 @@
 
 
             <div class="input-box">
-                <input type="text" id="username" name="username" placeholder="Your username" required>
+                <input type="text" id="username" name="username" placeholder="Username" required>
                 <i class='bx bxs-user'></i>
             </div>
 
             <div class="input-box">
-                <input type="email" id="email" name="email" placeholder="Your e-mail" required>
+                <input type="email" id="email" name="email" placeholder="E-mail" required>
                 <i class='bx bx-envelope'></i>
             </div>
 
             <div class="input-box">
-                <input type="tel"  id="phone" name="phone" placeholder="Your telephone" required>
+                <input type="tel"  id="phone" name="phone" placeholder="Telephone" required>
                 <i class='bx bxs-phone' ></i>
             </div>
 
@@ -61,12 +61,12 @@
             ?>
             
             <div class="input-box">
-                <input type="password" id="password" name="password" placeholder="Your password" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
                 <i class='bx bxs-lock-alt'></i>
             </div>
 
             <div class="input-box">
-                <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm your password" required>
+                <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm password" required>
                 <i class='bx bxs-lock-alt'></i>
             </div>
 

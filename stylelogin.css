@@ -126,3 +126,30 @@ nav .menu{
 .register-link p a:hover {
     text-decoration: underline;
 }
+
+
+
+@media (max-width: 600px){
+    .menu .logo a{
+        font-size: 5dvw;
+    }
+    
+    .menu ul li{
+        margin-left: 1vw;
+    }
+    
+    .menu ul li:first-child{
+        margin-left: 2vw;
+    }
+    
+    .menu ul li a{
+        font-size: 3dvw;
+    }
+    .wrapper {
+        width: 70vw;
+    }
+    .wrapper h1 {
+        font-size: 5dvw;
+
+    }
+}

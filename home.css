@@ -21,9 +21,9 @@ img{
 }
 nav{
     position: fixed;
-    background: #1b1b1b;
+    background-color: rgba(0,0,0,0.4);
     width: 100%;
-    margin: auto;
+    margin: auto; 
     padding: 10px 0;
     z-index: 12;
 }
@@ -71,6 +71,7 @@ nav .menu{
     color:#000000;
 }
 
+
 .backgroundcolor{
     border: 2px solid rgba(255, 255, 255, .2);
 }
@@ -106,7 +107,7 @@ nav .menu{
     transition: all 0.3s ease-in-out; 
 }
 .center ul li a:hover{
-    font-weight: 530;
+    font-weight: 500;
     background:whitesmoke;
     color:#000000;
 }
@@ -134,6 +135,7 @@ nav .menu{
     align-items: center;
     display: flex;
     justify-content: center;
+    height: calc(100vh - 70px);
     
 
 }
@@ -160,7 +162,91 @@ nav .menu{
     text-align: justify;
     align-items: center;
 }
-.heighttotal{
-    height: 10000px;
+
+
+@media (max-width: 650px){
+
+    
+    .menu .logo a{
+        font-size: 5dvw;
+    }
+    
+    .menu ul li{
+        margin-left: 1vw;
+    }
+    
+    .menu ul li:first-child{
+        margin-left: 2vw;
+    }
+    
+    .menu ul li a{
+        font-size: 3dvw;
+        padding: 1dvw 1dvw;
+        border-radius: 5dvw;
+    }
+    .center{
+        margin-top: calc(50vh - 90px);
+        width: 100%;
+        height: 50vh;
+    }
+    .center .title{
+        font-size:90%;
+    }
+    .center ul{
+        margin-top: 25px;
+    }
+    .center ul li a{
+        margin-inline: 15px;
+        font-size: 14px;
+        padding: 8px 30px;
+        border-radius: 25px;
+    }
+    .image_top{
+        position: absolute;
+        bottom:0;
+        left: 0;
+        width: 100%;
+    
+    }
+    .image_top img{
+        width: 100%;
+        vertical-align: bottom;
+    
+    }
+    
+    #howitworks{
+        position: absolute;
+        top:100vh;
+    
+    }
+    .divide{
+        width:100%;
+        align-items: center;
+        justify-content: center;
+        display:list-item;
+        
+    
+    }
+    .image_reserve{
+        width: 100%;
+        
+    
+    }
+    .TextHowItWorks{
+        width:90%;
+        margin-left: 4vh;
+        margin-right: 4vh;
+        align-items: center;
+    }
+    .TextHowItWorks h3{
+        
+        margin-top: 5vh;
+    }
+    .TextHowItWorks p{
+        margin-top: 3vh;
+        text-align: justify;
+        align-items: center;
+    }
+    
 }
 

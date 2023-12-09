@@ -27,8 +27,9 @@ CREATE TABLE User(
 );
 
 CREATE TABLE Friend(
-    user1_id INTEGER PRIMARY KEY REFERENCES User,
-    user2_id INTEGER PRIMARY KEY REFERENCES User,
+    connection_id INTEGER PRIMARY KEY,
+    user1_id INTEGER REFERENCES User(id),
+    user2_id INTEGER REFERENCES User(id),
     CHECK(user1_id <> user2_id)
 );
 
@@ -59,8 +60,9 @@ CREATE TABLE Ad(
     descrip TEXT,
     priv_publ BOOLEAN NOT NULL,
     accomodation INTEGER NOT NULL REFERENCES Accommodation,
+    acc_host_id INTEGER REFERENCES Accommodation(host),
     CHECK (strftime('%s',date_off) > strftime('%s',date_on)),
-    CHECK (host_ad == host_ac)
+    CHECK (host_ad == acc_host_id)
 );
 
 CREATE TABLE Reservation(
@@ -70,6 +72,7 @@ CREATE TABLE Reservation(
     transportation_type TEXT NOT NULL REFERENCES Transportation_type,
     guest INTEGER NOT NULL REFERENCES User,
     number_of_guests INTEGER NOT NULL,
+    capacity INTEGER NOT NULL REFERENCES Ad(capacity),
     CHECK (strftime('%s',date_out) > strftime('%s',date_in)),
     CHECK (number_of_guests<=capacity)
 );
@@ -109,4 +112,5 @@ CREATE TABLE Budget(
     CHECK (total>0)
 );
 
-
+INSERT INTO City VALUES (1,'Porto','o',1,1,1);
+INSERT INTO User VALUES (1,'testing','12345678','up0@fe.up.pt',1,1);

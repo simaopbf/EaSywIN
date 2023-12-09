@@ -1,3 +1,21 @@
+<?php
+  session_start();
+
+  $msg = $_SESSION['msg'];
+  unset($_SESSION['msg']);
+
+
+try {
+    $dbh = new PDO('sqlite:sql/database.db');
+    $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    
+  } catch (PDOException $e) {
+    $error_msg = $e->getMessage();
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="eng">
 
@@ -17,8 +35,16 @@
             </div>
             <ul>
                 <li><a href="#">Maps</a> </li>
-                <li><a href="#howitworks">How it works</a> </li>    
-                <li><a class="backgroundcolor" href="login.php">Login/ Sign up</a> </li>
+                <li><a href="#howitworks">How it works</a> </li> 
+                <?php if (!isset($_SESSION['username'])) { ?>   
+                    <li><a class="backgroundcolor" href="login.php">Login/ Sign up</a> </li>
+                <?php } else { ?>
+                        <li><a class="backgroundcolor" href="#"><i class='bx bxs-user'></i>  Profile </a>  </li>
+                <?php } ?>    
+
+                <?php if (isset($msg)) { ?>
+                    <p><?php echo $msg ?></p>
+                <?php } ?>
     
             </ul>
         </div>
@@ -33,9 +59,20 @@
         <div class="title">Visiting friends has never been this easy</div>
         <div>
             <ul>
-                <li><a class="backgroundcolor"href="login.php">Announce</a></li>
-                <li><a class="backgroundcolor"href="login.php">Reserve</a></li>
+            <?php if (!isset($_SESSION['username'])) { ?>   
 
+                <li><a class="backgroundcolor"href="login.php">Announce</a></li>
+
+                <li><a class="backgroundcolor"href="login.php">Reserve</a></li>
+            <?php } else { ?>
+                <li><a class="backgroundcolor"href="announce.php">Announce</a></li>
+
+                <li><a class="backgroundcolor"href="reservation.php">Reserve</a></li>
+            <?php } ?>
+
+            <?php if (isset($msg)) { ?>
+                <p><?php echo $msg ?></p>
+            <?php } ?>
             </ul>
         </div>
     </div>
@@ -65,12 +102,6 @@
 
     </div>
     <div class="heighttotal"></div>
-
-
-    
-
-    
-    
 </body>
 
 </html>

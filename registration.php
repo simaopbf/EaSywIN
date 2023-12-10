@@ -1,3 +1,12 @@
+<?php
+  session_start();
+
+  $error_message = $_SESSION['error_message'];
+  $msg = $_SESSION['msg'];
+  unset($_SESSION['error_message']);
+  unset($_SESSION['msg']);
+?>
+
 <!DOCTYPE html>
 <html lang="eng">
 
@@ -38,6 +47,9 @@
                 <input type="file" id="profile-image-input" style="display: none;" accept="image/*" onchange="displayImage(this)">
             </div>
 
+            <?php if (isset($msg)) { ?>
+                <p class="message"><?php echo $msg ?></p>  
+            <?php } ?>
 
             <div class="input-box">
                 <input type="text" id="username" name="username" placeholder="Username" required>
@@ -54,12 +66,10 @@
                 <i class='bx bxs-phone' ></i>
             </div>
 
-            <?php
-                if (isset($error_message)) {
-                    echo '<p class="error-message">' . $error_message . '</p>';
-                }
-            ?>
-            
+            <?php if (isset($error_message)) { ?>
+                <p class="error-message"><?php echo $error_message ?></p>  
+            <?php } ?>
+
             <div class="input-box">
                 <input type="password" id="password" name="password" placeholder="Password" required>
                 <i class='bx bxs-lock-alt'></i>

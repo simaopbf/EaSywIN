@@ -1,16 +1,53 @@
 <?php
+session_start();
 
-if ($_POST["password"] !== $_POST["password_confirmation"]) {
-    $error_message="Passwords must match";
-    include('registration.php');
-    exit();
+$username = $_POST['username'];
+$email = $_POST['email'];
+$tel = $_POST['phone'];
+$password = $_POST['password'];
+$password_confirmation = $_POST['password_confirmation'];
+
+
+
+if ($password !== $password_confirmation) {
+  $_SESSION['error_message']="Passwords must match";
+  include('registration.php');
+  die();
 }
 
-$password_hash = password_hash($S_POST["password"], PASSWORD_DEFAULT);
+if (strlen($password) < 8) {
+  $_SESSION['error_message'] = 'Password must have at least 8 characters.';
+  include('registration.php');
+  die();
+}
 
-$mysqli = require __DIR__ . "/database.php";
+function insertUser($username, $password, $email, $tel)
+{
+  global $dbh;
+  $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+  $stmt = $dbh->prepare('INSERT INTO User (username, password, email, phone_number) VALUES (?, ?, ?, ?)');
+  $stmt->execute(array($username, $hashedPassword, $email, $tel));
+}
 
-print_r($_POST);
-var_dump($password_hash);
+try {
+$dbh = new PDO('sqlite:sql/database.db');
+$dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+insertUser($username, $password, $email, $tel);
+$_SESSION['msg'] = 'Registration successful!';
+include('registration.php');
+die();
+
+} catch (PDOException $e) {
+  $error_msg = $e->getMessage();
+
+  if (strpos($error_msg, 'UNIQUE')) {
+    $_SESSION['msg'] = 'Username already exists!';
+  } else {
+    $_SESSION['msg'] = "Registration failed! ($error_msg)";
+  }
+  include('registration.php');
+  die();
+}
 ?>

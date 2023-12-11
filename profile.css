@@ -1,24 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-:target{
-    scroll-margin-top: 70px;
-}
-*{
-    margin: 0;
-    padding: 0;
-    font-family:"Poppins", sans-serif;
-    scroll-behavior: smooth;
-}
+
 body{
     width: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     min-height: 100vh;
-    overflow-x: hidden;
+    font-family:"Poppins", sans-serif;
     background-color: #fff;
-    
-
 }
 
 ul{
@@ -133,7 +123,13 @@ a{
     font-size: 1.3rem;
 }
 
-.header_wrapper .cols_container .right_col nav{
+.header_wrapper .cols_container .right_col {
+    height: 100%;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+.header_wrapper .cols_container .right_col .right-column-nav {
     display: flex;
     align-items: center;
     padding: 30px 0;
@@ -141,18 +137,18 @@ a{
     flex-direction: column;
 }
 
-.header_wrapper .cols_container .right_col nav ul{
+.header_wrapper .cols_container .right_col .right-column-nav ul{
     display: flex;
     gap: 20px;
     flex-direction: column;
 }
 
-.header_wrapper .cols_container .right_col nav ul li a{
+.header_wrapper .cols_container .right_col .right-column-nav ul li a{
     text-transform: uppercase;
     color:#818181;
 }
 
-.header_wrapper .cols_container .right_col nav button{
+.header_wrapper .cols_container .right_col .right-column-nav button{
     background: #1d1d1d;
     color: #fff;
     border: none;
@@ -162,18 +158,18 @@ a{
     margin-top: 20px;
 }
 
-.header_wrapper .cols_container .right_col nav ul li:nth-child(1) a{
+.header_wrapper .cols_container .right_col .right-column-nav ul li:nth-child(1) a{
     color: #1d1d1d;
     font-weight: 600;
 }
 
-.header_wrapper .cols_container .right_col nav button:hover{
+.header_wrapper .cols_container .right_col .right-column-nav button:hover{
    opacity: 0.8;
 }
 
 .header_wrapper .cols_container .right_col .Home{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 20px;
 }
 
@@ -199,7 +195,7 @@ a{
         padding: 25px 0;
     }
 
-    .header_wrapper .cols_container .right_col nav ul{
+    .header_wrapper .cols_container .right_col .right-column-nav ul{
         flex-direction: row;
         gap: 30px;
     }
@@ -218,21 +214,32 @@ a{
         margin-right: auto;
     }
 
-    .header_wrapper .cols_container .right_col nav{
+    .header_wrapper .cols_container .right_col .right-column-nav{
         flex-direction: row;
     }
 
-    .header_wrapper .cols_container .right_col nav button{
+    .header_wrapper .cols_container .right_col .right-column-nav button{
         margin-top: 0;
     }
    
 }
 
+:target{
+    scroll-margin-top: 70px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family:"Poppins", sans-serif;
+    scroll-behavior: smooth;
+}
 
 img{
     width:100%;
 }
-nav{
+
+.header nav{
     position: fixed;
     background-color: rgba(0,0,0,0.4);
     width: 100%;
@@ -240,7 +247,7 @@ nav{
     padding: 10px 0;
     z-index: 12;
 }
-nav .menu{
+.header nav .menu{
     max-width: 1250px;
     margin: auto;
     display: flex;
@@ -376,7 +383,7 @@ nav .menu{
     align-items: center;
 }
 
-
+/*
 @media (max-width: 650px){
 
     
@@ -461,4 +468,4 @@ nav .menu{
         align-items: center;
     }
     
-}
+}*/

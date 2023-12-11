@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="eng">
 
-</head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE-edge">
-<meta name="viewport" content="widt=device-width, initial-scale=1.0">
-<title>Profile</title>
-<link rel="stylesheet" href="profile.css">
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="widt=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="profile.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
 <body>
-    <nav>
-        <div class="menu">
-            <div class="logo">
-                <a href="homepage.php">EasyWIN</a>
+    <div class="header">
+        <nav>
+            <div class="menu">
+                <div class="logo">
+                    <a href="homepage.php">EasyWIN</a>
+                </div>
+                <ul>
+                    <li><a href="#">Maps</a> </li>
+                    <li><a href="#howitworks">How it works</a> </li>    
+                    <li><a class="backgroundcolor" href="login.php">Login/ Sign up</a> </li>
+        
+                </ul>
             </div>
-            <ul>
-                <li><a href="#">Maps</a> </li>
-                <li><a href="#howitworks">How it works</a> </li>    
-                <li><a class="backgroundcolor" href="login.php">Login/ Sign up</a> </li>
-    
-            </ul>
-        </div>
-    </nav> 
+        </nav>
+    </div> 
     <!--<div class="image_top">
         <img src="pexels-patrik-felker-6220559.jpg">
     </div> -->
@@ -58,22 +60,22 @@
             </div>
 
             <div class="right_col">
-                <nav>
+                <nav class="right-column-nav">
                     <ul>
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Friends</a></li>
                         <li><a href="#">Reservations</a></li>
                     </ul>
                     <button>Follow</button>
-
-                    <div class="Home">
-                        <img src="pexels-patrik-felker-6220559.jpg" alt="Photo">
-                        <img src="pexels-patrik-felker-6220559.jpg" alt="Photo">
-                        <img src="pexels-patrik-felker-6220559.jpg" alt="Photo">
-                        <img src="pexels-patrik-felker-6220559.jpg" alt="Photo">
-                        <img src="pexels-patrik-felker-6220559.jpg" alt="Photo">
-                    </div>
                 </nav>
+                <div class="Home">
+                    <img src="pexels-patrik-felker-6220559.jpg" alt="Photo">
+                    <img src="pexels-patrik-felker-6220559.jpg" alt="Photo">
+                    <img src="pexels-patrik-felker-6220559.jpg" alt="Photo">
+                    <img src="pexels-patrik-felker-6220559.jpg" alt="Photo">
+                    <img src="pexels-patrik-felker-6220559.jpg" alt="Photo">
+                </div>
+            
             </div>
         </div>
     </div>

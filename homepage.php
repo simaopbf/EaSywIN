@@ -39,7 +39,7 @@ try {
                 <?php if (!isset($_SESSION['username'])) { ?>   
                     <li><a class="backgroundcolor" href="login.php">Login/ Sign up</a> </li>
                 <?php } else { ?>
-                        <li><a class="backgroundcolor" href="#"><i class='bx bxs-user'></i>  Profile </a>  </li>
+                        <li><a class="backgroundcolor" href="profile.php"><i class='bx bxs-user'></i>  Profile </a>  </li>
                 <?php } ?>    
 
                 <?php if (isset($msg)) { ?>

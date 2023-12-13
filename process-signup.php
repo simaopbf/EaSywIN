@@ -30,14 +30,13 @@ function insertUser($username, $password, $email, $tel)
 }
 
 try {
-$dbh = new PDO('sqlite:sql/database.db');
-$dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $dbh = new PDO('sqlite:sql/database.db');
+  $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-insertUser($username, $password, $email, $tel);
-$_SESSION['msg'] = 'Registration successful!';
-include('registration.php');
-die();
+  insertUser($username, $password, $email, $tel);
+  $_SESSION['msg'] = 'Registration successful!';
+  header('Location: homepage.php');
 
 } catch (PDOException $e) {
   $error_msg = $e->getMessage();

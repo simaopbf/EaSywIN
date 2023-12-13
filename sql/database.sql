@@ -19,10 +19,10 @@ DROP TABLE IF EXISTS Budget;
 
 CREATE TABLE User(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
+    username TEXT NOT NULL,
     password TEXT NOT NULL,
     email TEXT NOT NULL,
-    city INTEGER NOT NULL REFERENCES City,
+    -- city INTEGER NOT NULL REFERENCES City,
     phone_number INTEGER NOT NULL
 );
 
@@ -113,4 +113,5 @@ CREATE TABLE Budget(
 );
 
 INSERT INTO City VALUES (1,'Porto','o',1,1,1);
-INSERT INTO User VALUES (1,'testing','12345678','up0@fe.up.pt',1,1);
+INSERT INTO User VALUES (1,'testing','12345678','up0@fe.up.pt',1);
+INSERT INTO User VALUES (2,'a','a','up1@fe.up.pt',2);

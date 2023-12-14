@@ -18,7 +18,7 @@
             <ul>
                 <li><a href="#">Maps</a> </li>
                 <li><a href="#howitworks">How it works</a> </li>    
-                <li><a class="backgroundcolor" href="login.php">Login/ Sign up</a> </li>
+                <li><a class="backgroundcolor" href="login.php">Login</a> </li>
     
             </ul>
         </div>

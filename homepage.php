@@ -37,7 +37,7 @@ try {
                 <li><a href="#">Maps</a> </li>
                 <li><a href="#howitworks">How it works</a> </li> 
                 <?php if (!isset($_SESSION['username'])) { ?>   
-                    <li><a class="backgroundcolor" href="login.php">Login/ Sign up</a> </li>
+                    <li><a class="backgroundcolor" href="login.php">Login</a> </li>
                 <?php } else { ?>
                         <li><a class="backgroundcolor" href="profile.php"><i class='bx bxs-user'></i>  Profile </a>  </li>
                 <?php } ?>    

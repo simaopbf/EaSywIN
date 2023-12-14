@@ -1,3 +1,21 @@
+<?php
+  session_start();
+
+  $msg = $_SESSION['msg'];
+  unset($_SESSION['msg']);
+
+
+try {
+    $dbh = new PDO('sqlite:sql/database.db');
+    $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    
+  } catch (PDOException $e) {
+    $error_msg = $e->getMessage();
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="eng">
 
@@ -11,20 +29,29 @@
 </head>
 <body>
     <div class="header">
-        <nav>
-            <div class="menu">
-                <div class="logo">
-                    <a href="homepage.php">EasyWIN</a>
-                </div>
-                <ul>
-                    <li><a href="#">Maps</a> </li>
-                    <li><a href="#howitworks">How it works</a> </li>    
-                    <li><a class="backgroundcolor" href="login.php">Login/ Sign up</a> </li>
-        
-                </ul>
+    <nav>
+        <div class="menu">
+            <div class="logo">
+                <a href="homepage.php">EasyWIN</a>
             </div>
-        </nav>
+            <ul>
+                <li><a href="#">Maps</a> </li>
+                <li><a href="#howitworks">How it works</a> </li> 
+                <?php if (!isset($_SESSION['username'])) { ?>   
+                    <li><a class="backgroundcolor" href="login.php">Login/ Sign up</a> </li>
+                <?php } else { ?>
+                        <li><a class="backgroundcolor" href="profile.php"><i class='bx bxs-user'></i>  Profile </a>  </li>
+                <?php } ?>    
+
+                <?php if (isset($msg)) { ?>
+                    <p><?php echo $msg ?></p>
+                <?php } ?>
+    
+            </ul>
+        </div>
+    </nav>
     </div> 
+        
     <!--<div class="image_top">
         <img src="pexels-patrik-felker-6220559.jpg">
     </div> -->

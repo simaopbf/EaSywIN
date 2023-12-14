@@ -66,7 +66,10 @@ try {
                 <h2>Username</h2>
                 <p>E-mail</p>
                 <p>Telephone</p>
-
+                <?php if(!isset($_SESSION['$username'])){ ?>
+                    <form action="logout.php" method="post">
+                    <button>Logout </button>
+                <?php } ?>
                 <ul class="about">
                     <li><span>25</span>Friends</li>
                     <li><span>2</span>Homes</li>

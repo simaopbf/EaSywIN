@@ -1,3 +1,12 @@
+<?php
+  session_start();
+
+  $error_message = $_SESSION['error_message'];
+  $msg = $_SESSION['msg'];
+  unset($_SESSION['error_message']);
+  unset($_SESSION['msg']);
+?>
+
 <!DOCTYPE html>
 <html lang="eng">
 
@@ -21,17 +30,19 @@
         </div>
     </nav>
     <div class="wrapper">
-        <form action="">
+        <form action="process_login.php" method="POST">
             <h1>Login</h1>
+            <?php if (isset($msg)) { ?>
+                <p class="message"><?php echo $msg ?></p>  
+            <?php } ?>
 
             <div class="input-box">
-                <input type="text" placeholder="Username" required>
+                <input type="text" id="username" name="username" placeholder="Username" required>
                 <i class='bx bxs-user'></i>
             </div>
             
             <div class="input-box">
-                <input type="password" placeholder="Password" required>
-                <i class='bx bxs-lock-alt'></i>
+                <input type="password" id="password" name="password" placeholder="Password" required>                <i class='bx bxs-lock-alt'></i>
             </div>
 
             <button type="submit" class="btn">Login</button>
@@ -41,6 +52,7 @@
             </div>
         </form>
     </div>
+    
 </body>
 
 <html>

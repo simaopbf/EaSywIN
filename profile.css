@@ -65,6 +65,19 @@ a{
     border: 2px solid #fff;
 }
 
+.header_wrapper .cols_container .left_col button{
+    background: #1d1d1d;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.header_wrapper .cols_container .left_col button:hover{
+    opacity: 0.8;
+ }
 .header_wrapper .cols_container .left_col h2 {
     margin-top: 60px;
     font-weight: 600;

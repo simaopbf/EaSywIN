@@ -59,15 +59,6 @@ try {
         <div class="wrapper">
             <form action="process_announce.php" method="POST">
                 <h1>Announce</h1>
-                <!--<div class="input-box">
-                    <label for="host_id">Select Host:</label>
-                    <select id="host_id" name="host_id" required>
-                        <?php foreach ($user as $u) : ?>
-                            <option value="<?= $u['username'] ?>"><?= $u['username'] ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div> -->
-
                 <div class="input-box">
                     <label for="accomodation_id">Select Accomodation:</label>
                     <select id="accommodation_id" name="accommodation_id" required>

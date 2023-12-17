@@ -37,14 +37,14 @@
     </nav>
 
     <div class="wrapper">
-        <form action="process-signup.php" method="post">
+        <form action="process-signup.php" method="post" enctype="multipart/form-data">
             <h1>Sign Up</h1>
 
             <div class="image-container">
-                <label for="profile-image-input" class="image-label">
-                    <img id="profile-image" src="profile.png" alt="Profile Image">
+                <label for="profile_pic">
+                    <img id="profile-image" src="profile.png">
                 </label>
-                <input type="file" id="profile-image-input" style="display: none;" accept="image/*" onchange="displayImage(this)">
+                <input type="file" id="profile_pic" name="profile_pic" style="display: none;" accept="image/*" onchange="displayImage(this)">
             </div>
 
             <?php if (isset($msg)) { ?>

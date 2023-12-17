@@ -7,8 +7,6 @@ $tel = $_POST['phone'];
 $password = $_POST['password'];
 $password_confirmation = $_POST['password_confirmation'];
 
-
-
 if ($password !== $password_confirmation) {
   $_SESSION['error_message']="Passwords must match";
   include('registration.php');
@@ -29,6 +27,10 @@ function insertUser($username, $password, $email, $tel)
   $stmt->execute(array($username, $hashedPassword, $email, $tel));
 }
 
+function saveProfilePic($username) {
+  move_uploaded_file($_FILES['profile_pic']['tmp_name'], "images/users/$username.jpg");
+}
+
 try {
   $dbh = new PDO('sqlite:sql/database.db');
   $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
@@ -37,6 +39,8 @@ try {
   insertUser($username, $password, $email, $tel);
   $_SESSION['msg'] = 'Registration successful!';
   header('Location: homepage.php');
+
+  saveProfilePic($username);
 
 } catch (PDOException $e) {
   $error_msg = $e->getMessage();

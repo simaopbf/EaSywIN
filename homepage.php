@@ -4,12 +4,20 @@
   $msg = $_SESSION['msg'];
   unset($_SESSION['msg']);
 
+  $userImage = "images/users/" . $_SESSION['username'] . ".jpg";
+  $defaultImage = "profile.png";
+
 
 try {
     $dbh = new PDO('sqlite:sql/database.db');
     $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    if (file_exists($userImage)) {
+        $imageSource = $userImage;
+    } else {
+        $imageSource = $defaultImage;  // Usa a imagem padrão se a imagem do usuário não existir
+    }
     
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();
@@ -39,7 +47,12 @@ try {
                 <?php if (!isset($_SESSION['username'])) { ?>   
                     <li><a class="backgroundcolor" href="login.php"> <i class='bx bxs-user'></i>  Login</a> </li>
                 <?php } else { ?>
-                        <li><a class="backgroundcolor" href="profile.php"><i class='bx bxs-user'></i>  Profile </a>  </li>
+                        <li>
+                            <a class="backgroundcolor" href="profile.php">
+                            <img src="<?php echo $imageSource; ?>">
+                                <span><?php echo $_SESSION['username'] ?></span>
+                            </a>
+                        </li>
                 <?php } ?>    
 
                 <?php if (isset($msg)) { ?>

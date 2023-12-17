@@ -4,13 +4,24 @@
   $msg = $_SESSION['msg'];
   unset($_SESSION['msg']);
 
+  /* $dbh = new PDO('sqlite:sql/products.db');
+  $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+  $stmt = $dbh->prepare('SELECT * FROM Product WHERE cat_id=?');
+  $stmt->execute(array($cat_id));
+  $products = $stmt->fetchAll();
+
+  $stmt = $dbh->prepare('SELECT name FROM Category WHERE id=?');
+  $stmt->execute(array($cat_id));
+  $category = $stmt->fetch(); */
 try {
     $dbh = new PDO('sqlite:sql/database.db');
     $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    
+    $stmt = $dbh->query('SELECT * FROM User /*WHERE image IS NOT NULL AND image <> ""*/');
+    /*$stmt->execute(array($username));*/
+    $user = $stmt->fetchAll();
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();
   }
@@ -52,11 +63,28 @@ try {
         <div class="wrapper">
              <h1>Make Reservations</h1>
              <div class= "divide">
-
-                <div class= "house_sec_1">
+             <?php if ($error_msg == null) { 
+                 foreach ($user as $row) {?>
+                 <div class= "divide">
+                    <div class= "house_sec_1">
+                    <h3>House: <?php echo $row['username'] ?></h3>
+                   <img src="images/<?php echo $row['image']?>.png" alt="">
+                    </div>
+                    <div class= "house_sec_2">
+                    <h4>City: (city)</h4>
+                    <h4>Weather: fjdks</h4>
+                    <h4>Capacity: capacity</h4>
+                    <button>Reserve</button>
+                    </div>
+                    </div>
+                <?php } ?>
+             <?php }else {
+          echo $error_msg;
+             } ?>
+                <!-- <div class= "house_sec_1">
                    <h3>House (friend)</h3>
                   <img src="airbnb alugar.png">
-                </div>
+                </div> -->
                 <div class= "house_sec_2">
                     <h4>City: (city)</h4>
                     <h4>Weather: fjdks</h4>

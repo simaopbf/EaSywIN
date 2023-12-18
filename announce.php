@@ -60,7 +60,7 @@ try {
             <form action="process_announce.php" method="POST">
                 <h1>Announce</h1>
                 <div class="input-box">
-                    <label for="accomodation_id">Select Accomodation:</label>
+                    <label for="accommodation_id">Select Accommodation:</label>
                     <select id="accommodation_id" name="accommodation_id" required>
                         <?php foreach ($accommodations as $accommodation) : ?>
                             <option value="<?= $accommodation['id'] ?>"><?= $accommodation['id'] ?></option>

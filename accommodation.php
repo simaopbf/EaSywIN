@@ -1,11 +1,8 @@
 <?php
 session_start();
 
-// Check if the user is logged in
-//if (!isset($_SESSION['username'])) {
-//    header("Location: login.php");
-//    exit();
-//}
+$msg = $_SESSION['msg'];
+unset($_SESSION['msg']);
 
 try {
     $dbh = new PDO('sqlite:sql/database.db');
@@ -14,9 +11,10 @@ try {
     $stmt = $dbh->query('SELECT * FROM User /*WHERE image IS NOT NULL AND image <> ""*/');
     /*$stmt->execute(array($username));*/
     $user = $stmt->fetchAll();
-    $stmt_cities = $dbh->prepare('SELECT name FROM City ORDER BY name ASC');
+    $stmt_cities = $dbh->prepare('SELECT * FROM City ORDER BY name ASC');
     $stmt_cities->execute();
     $cities = $stmt_cities->fetchAll();
+    
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();
   }
@@ -53,31 +51,38 @@ try {
     <div class="center">
         <div class="wrapper">
             <form action="submit_home.php" method="POST">
-                <h1>Add Accommodation</h1>
-                <div class="input-box">
-                    <label for="address">Address:</label>
-                    <input type="text" id="address" name="address" placeholder="Enter address" required>
-                </div>
+                 <h1>Add Accommodation</h1>
+                 <div class="cols_container">
+                    <div class = "left_col">
+                        <div class="input-box">
+                            <label for="address">Address:</label>
+                            <input type="text" id="address" name="address" placeholder="Enter address" required>
+                        </div>
 
-                <div class="input-box">
-                    <label for="city">City:</label>
-                    <select id="city" name="city" required>
-                        <?php foreach ($cities as $city) : ?>
-                            <option value="<?php echo $city['city']; ?>"><?php echo $city['city']; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
+                        <div class="input-box">
+                            <label for="city">City:</label>
+                            <select id="city" name="city" required>
+                                <?php foreach ($cities as $city) : ?>
+                                    <option value="<?php echo $city['name']; ?>"><?php echo $city['name']; ?></option>
+                                    <?php print_r($city); ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
 
-                <div class="input-box">
-                    <label for="capacity">Capacity:</label>
-                    <input type="integer" id="capacity" name="capacity" required>
-                </div>
-                
-                <div class="image-container">
-                    <label for="accommod_pic">
-                        <img id="accommod-image" src="accommod.png">
-                    </label>
-                    <input type="file" id="profile_pic" name="profile_pic" style="display: none;" accept="image/*" onchange="displayImage(this)">
+                        <div class="input-box">
+                            <label for="capacity">Capacity:</label>
+                            <input type="integer" id="capacity" name="capacity" required>
+                        </div>
+                    </div>
+
+                    <div class = "right_col">
+                        <div class="image-container">
+                            <label for="accommod_pic">
+                                <img id="accommod-image" src="accommod.png">
+                            </label>
+                            <input type="file" id="accommod_pic" name="accommod_pic" style="display: none;" accept="image/*" onchange="displayImage(this)">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="input-box">
@@ -90,7 +95,7 @@ try {
                         if (file) {
                             var reader = new FileReader();
                             reader.onload = function (e) {
-                                document.getElementById('profile-image').src = e.target.result;
+                                document.getElementById('accommod-image').src = e.target.result;
                             };
                             reader.readAsDataURL(file);
                         }

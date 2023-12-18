@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family:"Poppins", sans-serif;
+    scroll-behavior: smooth;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background: url(pexels-patrik-felker-6220559.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+img{
+    width:100%;
+}
+nav{
+    position: fixed;
+    background-color: rgba(0,0,0,0.4);
+    width: 100%;
+    margin: auto; 
+    padding: 10px 0;
+    z-index: 12;
+}
+nav .menu{
+    max-width: 1250px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+.menu .logo a{
+    text-decoration: none;
+    color:#fff;
+    font-size: 35px;
+    font-weight: 600;
+}
+.menu ul{
+    display: inline-flex;
+}
+
+.menu ul li{
+    list-style: none;
+    margin-left: 7px;
+}
+
+.menu ul li:first-child{
+    margin-left: 0px;
+}
+.menu ul li:nth-child(2):active{
+    transform: scale(2);
+}
+.menu ul li a{
+    text-decoration: none;
+    color:#fff;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out;
+}
+.menu ul li a:hover{
+    font-weight: 530;
+    background:whitesmoke;
+    color:#000000;
+}
+.center{
+    position: absolute;
+    width: 100%;
+    margin: auto;
+}
+.wrapper {
+    margin: auto;
+    height: 100%;
+    margin-top: 20vh;
+    width: 90%;
+    background:transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px; 
+}
+.wrapper h1{
+    text-align: center;
+}
+.divide{
+    width:100%;
+    align-items: center;
+    display:flex;
+    
+}
+.house_sec_1{
+    display: flow-root;
+    width: 50%;
+    align-items: center;
+}
+.house_sec_2{
+    display: flow-root;
+    width: 50%;
+    align-items: center;
+    margin-top: 5%;
+}
+.house_section_1 h3{
+    text-align: center;
+
+}
+.house_sec_1 img{
+    padding-top: 2%;
+    width:70%;
+}
+
+.house_sec_2 h4{
+    margin-top:5px;
+
+}
+.house_sec_2 button{
+    background: #1d1d1d;
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+@media (max-width: 650px){
+    .divide{
+        
+        display:contents;
+        
+    }
+    .house_sec_1{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .house_sec_1 img{
+        
+        width:200px;
+       
+    }
+    .house_sec_2{
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+    }
+    
+}

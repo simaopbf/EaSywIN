@@ -59,10 +59,8 @@ CREATE TABLE Ad(
     date_off TEXT NOT NULL,
     descrip TEXT,
     priv_publ BOOLEAN NOT NULL,
-    accomodation INTEGER NOT NULL REFERENCES Accommodation,
-    acc_host_id TEXT REFERENCES Accommodation(host),
-    CHECK (strftime('%s',date_off) > strftime('%s',date_on)),
-    CHECK (host_ad == acc_host_id)
+    accommodation INTEGER NOT NULL REFERENCES Accommodation,
+    CHECK (strftime('%s',date_off) > strftime('%s',date_on))
 );
 
 CREATE TABLE Reservation(
@@ -86,9 +84,9 @@ CREATE TABLE City(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     meteorology TEXT NOT NULL,
-    average_cost_of_living INTEGER NOT NULL,
-    lat INTEGER NOT NULL,
-    lon INTEGER NOT NULL,
+    average_cost_of_living REAL NOT NULL,
+    lat REAL NOT NULL,
+    lon REAL NOT NULL,
     CHECK (average_cost_of_living>0)
 );
 
@@ -140,4 +138,7 @@ INSERT INTO City VALUES (15,'Brussels','escaldar',21.25,41.14961,-8.61099);
 
 INSERT INTO User VALUES ('testing','12345678','up0@fe.up.pt',1);
 INSERT INTO User VALUES ('a','a','up1@fe.up.pt',2);
+
 INSERT INTO Accommodation VALUES (1,'testing','rua dfgfds',1,2,'bed');
+INSERT INTO Accommodation VALUES (2,'a','rua dfgfds',1,2,'room');
+INSERT INTO Ad VALUES (1,'testing',1,'1/1/2024','10/1/2024','defdsxa',1,1);

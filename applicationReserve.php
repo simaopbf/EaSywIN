@@ -4,32 +4,22 @@
   $msg = $_SESSION['msg'];
   unset($_SESSION['msg']);
 
-  /* $dbh = new PDO('sqlite:sql/products.db');
-  $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $id=(int)$_GET['id'];
 
-  $stmt = $dbh->prepare('SELECT * FROM Product WHERE cat_id=?');
-  $stmt->execute(array($cat_id));
-  $products = $stmt->fetchAll();
-
-  $stmt = $dbh->prepare('SELECT name FROM Category WHERE id=?');
-  $stmt->execute(array($cat_id));
-  $category = $stmt->fetch(); */
-try {
+  try {
     $dbh = new PDO('sqlite:sql/database.db');
     $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $dbh->query('SELECT * FROM User');
-    
-    /*$stmt->execute(array($username));*/
-    $user = $stmt->fetchAll();
-    $stmt = $dbh->query('SELECT * FROM Accommodation INNER JOIN City ON City.id =Accommodation.city');
+    $stmt = $dbh->prepare('SELECT * FROM Accommodation INNER JOIN City ON City.id =Accommodation.city INNER JOIN Ad ON Ad.accommodation= Accommodation.id WHERE Accommodation.id=:id');
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
     $accom = $stmt->fetchAll();
     $stmt = $dbh->query('SELECT * FROM City');
     $city = $stmt->fetchAll();
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();
   }
+  
 ?>
 
 
@@ -66,37 +56,21 @@ try {
     </div>
     <div class="center">
         <div class="wrapper">
-             <h1>Make Reservations</h1>
-             
-             <?php if ($error_msg == null) { 
-                 foreach ($accom as $row) {?>
+             <h1>Place Reservations</h1>
+             <h1> <?php echo $id ?> </h1>
                  <div class= "divide">
                     <div class= "house_sec_1">
-                    <h3>House: <?php echo $row['host_ac'] ?></h3>
-                   <img src="images/<?php echo $row['image']?>.png" alt="">
+                    <h3>House: <?php echo $accom[0]['host_ad'] ?> </h3>
+                   <img src="images/<?php echo $accom[0]['image']?>.png" alt="">
                     </div>
                     <div class= "house_sec_2">
-                    <h4>City: <?php echo $row['name'] ?></h4>
-                    <h4>Weather: <?php echo $row['meteorology'] ?></h4>
-                    <h4>Capacity: <?php echo $row['capacity'] ?> </h4>
-                    <h4>id: <?php echo $row['id'] ?> </h4>
-                    <h4>Average cost of living per day: <?php echo $row['average_cost_of_living'] ?> </h4>
-                    <a href="applicationReserve.php?id=<?=$row['id']?>"><button>Reserve</button></a>
+                    <h4>City: <?php echo $accom[0]['name'] ?></h4>
+                    <h4>Weather: <?php echo $accom[0]['meteorology'] ?></h4>
+                    <h4>Capacity:<?php echo $accom[0]['capacity'] ?> </h4>
+                    <h4>Average cost of living per day:<?php echo $accom[0]['average_cost_of_living'] ?> </h4>
+                    
                     </div>
                     </div>
-                <?php } ?>
-             <?php }else {
-          echo $error_msg;
-             } ?>
-                <!-- <div class= "house_sec_1">
-                   <h3>House (friend)</h3>
-                  <img src="airbnb alugar.png">
-                </div> -->
-                
-
-
-            
-                
                 </div>
             </div>
            

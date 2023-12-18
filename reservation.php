@@ -19,9 +19,14 @@ try {
     $dbh = new PDO('sqlite:sql/database.db');
     $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $dbh->query('SELECT * FROM User /*WHERE image IS NOT NULL AND image <> ""*/');
+    $stmt = $dbh->query('SELECT * FROM User');
+    
     /*$stmt->execute(array($username));*/
     $user = $stmt->fetchAll();
+    $stmt = $dbh->query('SELECT * FROM Accommodation INNER JOIN City ON City.id =Accommodation.city');
+    $accom = $stmt->fetchAll();
+    $stmt = $dbh->query('SELECT * FROM City');
+    $city = $stmt->fetchAll();
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();
   }
@@ -62,18 +67,19 @@ try {
     <div class="center">
         <div class="wrapper">
              <h1>Make Reservations</h1>
-             <div class= "divide">
+             
              <?php if ($error_msg == null) { 
-                 foreach ($user as $row) {?>
+                 foreach ($accom as $row) {?>
                  <div class= "divide">
                     <div class= "house_sec_1">
-                    <h3>House: <?php echo $row['username'] ?></h3>
+                    <h3>House: <?php echo $row['host_ac'] ?></h3>
                    <img src="images/<?php echo $row['image']?>.png" alt="">
                     </div>
                     <div class= "house_sec_2">
-                    <h4>City: (city)</h4>
-                    <h4>Weather: fjdks</h4>
-                    <h4>Capacity: capacity</h4>
+                    <h4>City: <?php echo $row['name'] ?></h4>
+                    <h4>Weather: <?php echo $row['meteorology'] ?></h4>
+                    <h4>Capacity: <?php echo $row['capacity'] ?> </h4>
+                    <h4>Average cost of living per day: <?php echo $row['average_cost_of_living'] ?> </h4>
                     <button>Reserve</button>
                     </div>
                     </div>

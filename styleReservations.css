@@ -95,12 +95,19 @@ nav .menu{
 .divide{
     width:100%;
     align-items: center;
-    display: flex;
+    display:flex;
+    
 }
 .house_sec_1{
     display: flow-root;
     width: 50%;
     align-items: center;
+}
+.house_sec_2{
+    display: flow-root;
+    width: 50%;
+    align-items: center;
+    margin-top: 5%;
 }
 .house_section_1 h3{
     text-align: center;
@@ -111,8 +118,8 @@ nav .menu{
     width:70%;
 }
 
-.house_sec_2 h2{
-    margin-left: 10px;
+.house_sec_2 h4{
+    margin-top:5px;
 
 }
 .house_sec_2 button{
@@ -122,5 +129,31 @@ nav .menu{
     padding: 10px 25px;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 10px;
+}
+@media (max-width: 650px){
+    .divide{
+        
+        display:contents;
+        
+    }
+    .house_sec_1{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .house_sec_1 img{
+        
+        width:200px;
+       
+    }
+    .house_sec_2{
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+    }
+    
 }

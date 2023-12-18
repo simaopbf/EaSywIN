@@ -21,8 +21,8 @@ CREATE TABLE User(
     password TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
     -- city INTEGER NOT NULL REFERENCES City,
-    phone_number INTEGER NOT NULL,
-    image TEXT UNIQUE
+    phone_number INTEGER NOT NULL
+    
 );
 
 CREATE TABLE Friend(
@@ -47,6 +47,7 @@ CREATE TABLE Accommodation(
     address TEXT NOT NULL,
     city INTEGER NOT NULL REFERENCES City,
     capacity INTEGER NOT NULL,
+    image TEXT UNIQUE,
     CHECK (capacity>0)
 );
 
@@ -137,5 +138,6 @@ INSERT INTO City VALUES (14,'Prague','neve',21.25,41.14961,-8.61099);
 INSERT INTO City VALUES (15,'Brussels','escaldar',21.25,41.14961,-8.61099);
 
 
-INSERT INTO User VALUES (1,'testing','12345678','up0@fe.up.pt',1);
-INSERT INTO User VALUES (2,'a','a','up1@fe.up.pt',2);
+INSERT INTO User VALUES ('testing','12345678','up0@fe.up.pt',1);
+INSERT INTO User VALUES ('a','a','up1@fe.up.pt',2);
+INSERT INTO Accommodation VALUES (1,'testing','rua dfgfds',1,2,'bed');

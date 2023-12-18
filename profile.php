@@ -17,6 +17,28 @@ try {
     } else {
         $imageSource = $defaultImage;
     }
+
+    $stmt = $dbh->prepare('SELECT email FROM User WHERE username = :username');
+    $stmt->bindParam(':username', $_SESSION['username']);
+    $stmt->execute();
+    $user = $stmt->fetch();
+
+    if ($user) {
+        $email = $user['email'];
+    } else { 
+        $email = 'N/A'; 
+    }    
+    
+    $stmt = $dbh->prepare('SELECT phone_number FROM User WHERE username = :username');
+    $stmt->bindParam(':username', $_SESSION['username']);
+    $stmt->execute();
+    $user = $stmt->fetch();
+
+    if ($user) {
+        $phone = $user['phone_number'];
+    } else { 
+        $phone = 'N/A'; 
+    }
     
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();
@@ -67,21 +89,30 @@ try {
         <header></header>
         <div class="cols_container">
             <div class ="left_col">
-
-                <div class="image-container">
-                    <label for="profile_pic">
-                        <img id="profile-image" src="<?php echo $imageSource; ?>">
-                    </label>
-                    <input type="file" id="profile_pic" name="profile_pic" style="display: none;" accept="image/*" onchange="displayImage(this)">
-                </div>
+                <form action="process-signup.php" method="post" enctype="multipart/form-data">
+                    <div class="image-container">
+                        <label for="profile_pic">
+                            <img id="profile-image" src="<?php echo $imageSource; ?>">
+                        </label>
+                        <input type="file" id="profile_pic" name="profile_pic" style="display: none;" accept="image/*" onchange="displayImage(this)">
+                    </div>
+                </form>
 
                 <h2><span><?php echo $_SESSION['username'] ?></span></h2>
-                <p>E-mail</p>
-                <p>Telephone</p>
-                <?php if(!isset($_SESSION['$username'])){ ?>
-                    <form action="logout.php" method="post">
-                    <button>Logout </button>
-                <?php } ?>
+                <p><?php echo $email; ?></p> 
+                <p><?php echo $phone; ?></p>
+
+                <div class = "buttons">
+                    <a href="accommodation.php"><button>Add Accommodation</button></a>
+                
+                    <?php if(!isset($_SESSION['$username'])){ ?>
+                        <form action="logout.php" method="post">
+                            <button>Logout </button>
+                        </form>
+                    <?php } ?>
+
+                </div>
+
                 <ul class="about">
                     <li><span>25</span>Friends</li>
                     <li><span>2</span>Homes</li>
@@ -92,12 +123,7 @@ try {
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor maxime corporis eum natus, assumenda deleniti fugit nisi atque aut adipisci, animi, distinctio voluptas ducimus eligendi. Molestias sunt quo aliquam porro.
                     </p>
                  
-                    <ul>
-                        <li><i class="fab fa-twitter"></i></li>
-                        <li><i class="fab fa-pinterest"></i></li>
-                        <li><i class="fab fa-facebook"></i></li>
-                        <li><i class="fab fa-instagram"></i></li>
-                    </ul>
+
                 </div>
             </div>
 
@@ -108,7 +134,7 @@ try {
                         <li><a href="#">Friends</a></li>
                         <li><a href="#">Reservations</a></li>
                     </ul>
-                    <button>Follow</button>
+                    <button>Find friends</button>
                 </nav>
                 <div class="Home">
                     <img src="pexels-patrik-felker-6220559.jpg" alt="Photo">

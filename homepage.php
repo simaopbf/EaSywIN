@@ -1,9 +1,6 @@
 <?php
   session_start();
 
-  $msg = $_SESSION['msg'];
-  unset($_SESSION['msg']);
-
   $userImage = "images/users/" . $_SESSION['username'] . ".jpg";
   $defaultImage = "profile.png";
 

@@ -32,9 +32,11 @@
     <div class="wrapper">
         <form action="process_login.php" method="POST">
             <h1>Login</h1>
-            <?php if (isset($msg)) { ?>
-                <p class="message"><?php echo $msg ?></p>  
-            <?php } ?>
+            <h2>
+                <?php if (isset($msg)) { ?>
+                    <p class="message"><?php echo $msg ?></p>  
+                <?php } ?>
+            </h2>
 
             <div class="input-box">
                 <input type="text" id="username" name="username" placeholder="Username" required>
@@ -42,7 +44,7 @@
             </div>
             
             <div class="input-box">
-                <input type="password" id="password" name="password" placeholder="Password" required>                <i class='bx bxs-lock-alt'></i>
+                <input type="password" id="password" name="password" placeholder="Password" required><i class='bx bxs-lock-alt'></i>
             </div>
 
             <button type="submit" class="btn">Login</button>

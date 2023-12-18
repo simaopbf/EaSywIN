@@ -38,7 +38,7 @@ try {
 
   insertUser($username, $password, $email, $tel);
   $_SESSION['msg'] = 'Registration successful!';
-  header('Location: homepage.php');
+  header('Location: login.php');
 
   saveProfilePic($username);
 

@@ -11,6 +11,7 @@ body{
     background-color: #fff;
 }
 
+
 ul{
     list-style-type: none;
     margin: 0;
@@ -24,10 +25,24 @@ a{
 
 }
 
+.menu ul li a.backgroundcolor {
+    display: flex;
+    align-items: center;
+}
+
+.menu ul li a.backgroundcolor img {
+    margin-right: 10px;
+}
+
+.menu img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
 .header_wrapper header {
     width: 100%;
-    background: url(../projeto/pexels-patrik-felker-6220559.jpg) no-repeat 50% 20% / cover;
-    min-height: calc(100px + 15vw);
+    min-height: 200px;
 }
 
 .header_wrapper .cols_container .left_col {
@@ -38,20 +53,27 @@ a{
     margin: 0 auto;
 }
 
-.header_wrapper .cols_container .left_col .img_container {
+.header_wrapper .cols_container .left_col .image-container {
     position: absolute;
     top: -50px;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.header_wrapper .cols_container .left_col .img_container img {
+.header_wrapper .cols_container .left_col .image-container img {
     width: 120px;
     height: 120px;
     object-fit: cover;
     border-radius: 50%;
     display: block;
     box-shadow: 1px 3px 12px rgba(0,0,0,0.18);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.image-container img:hover {
+    transform: scale(1.1);
+    content: url(camera.jpg);
 }
 
 .header_wrapper .cols_container .left_col .img_container span {
@@ -254,7 +276,7 @@ img{
 
 .header nav{
     position: fixed;
-    background-color: rgba(0,0,0,0.4);
+    background-color: #000000;
     width: 100%;
     margin: auto; 
     padding: 10px 0;

@@ -16,7 +16,7 @@ try {
     if (file_exists($userImage)) {
         $imageSource = $userImage;
     } else {
-        $imageSource = $defaultImage;  // Usa a imagem padrão se a imagem do usuário não existir
+        $imageSource = $defaultImage;
     }
     
   } catch (PDOException $e) {

@@ -71,7 +71,7 @@ nav .menu{
     transition: transform 0.3s ease;
 }
 
-.image-container:hover #profile-image {
+.image-container img:hover {
     transform: scale(1.1);
     content: url(camera.jpg);
 }

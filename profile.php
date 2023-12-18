@@ -2,14 +2,21 @@
   session_start();
 
   $msg = $_SESSION['msg'];
-  unset($_SESSION['msg']);
+  unset($_SESSION['msg']);~
 
+  $userImage = "images/users/" . $_SESSION['username'] . ".jpg";
+  $defaultImage = "profile.png";
 
 try {
     $dbh = new PDO('sqlite:sql/database.db');
     $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    if (file_exists($userImage)) {
+        $imageSource = $userImage;
+    } else {
+        $imageSource = $defaultImage;
+    }
     
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();
@@ -38,13 +45,14 @@ try {
                 <li><a href="#">Maps</a> </li>
                 <li><a href="#howitworks">How it works</a> </li> 
                 <?php if (!isset($_SESSION['username'])) { ?>   
-                    <li><a class="backgroundcolor" href="login.php">Login/ Sign up</a> </li>
+                    <li><a class="backgroundcolor" href="login.php"> <i class='bx bxs-user'></i>  Login</a> </li>
                 <?php } else { ?>
-                        <li><a class="backgroundcolor" href="profile.php"><i class='bx bxs-user'></i>  Profile </a>  </li>
-                <?php } ?>    
-
-                <?php if (isset($msg)) { ?>
-                    <p><?php echo $msg ?></p>
+                        <li>
+                            <a class="backgroundcolor" href="profile.php">
+                            <img src="<?php echo $imageSource; ?>">
+                                <span><?php echo $_SESSION['username'] ?></span>
+                            </a>
+                        </li>
                 <?php } ?>
     
             </ul>
@@ -59,11 +67,15 @@ try {
         <header></header>
         <div class="cols_container">
             <div class ="left_col">
-                <div class ="img_container">
-                    <img src="camera.jpg" alt="User">
-                    <span></span>
+
+                <div class="image-container">
+                    <label for="profile_pic">
+                        <img id="profile-image" src="<?php echo $imageSource; ?>">
+                    </label>
+                    <input type="file" id="profile_pic" name="profile_pic" style="display: none;" accept="image/*" onchange="displayImage(this)">
                 </div>
-                <h2>Username</h2>
+
+                <h2><span><?php echo $_SESSION['username'] ?></span></h2>
                 <p>E-mail</p>
                 <p>Telephone</p>
                 <?php if(!isset($_SESSION['$username'])){ ?>

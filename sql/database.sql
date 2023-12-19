@@ -55,8 +55,8 @@ CREATE TABLE Ad(
     ad_id INTEGER PRIMARY KEY AUTOINCREMENT,
     host_ad TEXT NOT NULL REFERENCES User,
     city INTEGER NOT NULL REFERENCES City,
-    date_on TEXT NOT NULL,
-    date_off TEXT NOT NULL,
+    date_on DATE NOT NULL,
+    date_off DATE NOT NULL,
     descrip TEXT,
     priv_publ BOOLEAN NOT NULL,
     accommodation INTEGER NOT NULL REFERENCES Accommodation,
@@ -65,8 +65,8 @@ CREATE TABLE Ad(
 
 CREATE TABLE Reservation(
     reservation_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    date_in TEXT NOT NULL,
-    date_out TEXT NOT NULL,
+    date_in DATE NOT NULL,
+    date_out DATE NOT NULL,
     transportation_type TEXT NOT NULL REFERENCES Transportation_type,
     guest TEXT NOT NULL REFERENCES User,
     number_of_guests INTEGER NOT NULL,

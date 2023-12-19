@@ -73,13 +73,16 @@
                         <h4>Check in available from: <?php echo $accom[0]['date_on'] ?> </h4>
                         <h4>Check out available until: <?php echo $accom[0]['date_off'] ?> </h4>
                         <form action= "process_select_dates.php" method="post">
+                        <?php if (isset($msg)) { ?>
+                            <p class="message"><?php echo $msg ?></p>  
+                        <?php } ?>
                         <div class="input-box">
                             <label for="check_in">Check in:</label>
-                            <input type="date" id="check_in" name="check_in" required>
+                            <input type="date" min=<?php echo $accom[0]['date_on']?> max=<?php echo $accom[0]['date_off']?> id="check_in" name="check_in" required>
                         </div>
                         <div class="input-box">
                             <label for="check_out">Check out:</label>
-                            <input type="date" id="check_out" name="check_out" required>
+                            <input type="date" min=<?php echo $accom[0]['date_on']?> max=<?php echo $accom[0]['date_off']?> id="check_out" name="check_out" required>
                         </div>
 
                         <label for="transport_type">Method of transportation:</label>
@@ -91,9 +94,10 @@
 
                         <label for="n_guests">Number of guests:</label>
                         <input type="number" id="n_guests" name="n_guests" min="1" max="<?php echo $accom[0]['capacity']?>">
-                        </form>
-
+                        
+                        <input type="hidden" id="id" name="id" value="<?php echo $id ?>">
                         <button type="submit" class="btn">Reserve</button>
+                        </form>
                     </div>
                  </div>
                 </div>

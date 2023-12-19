@@ -134,7 +134,7 @@ try {
                         <li><a href="#">Friends</a></li>
                         <li><a href="#">Reservations</a></li>
                     </ul>
-                    <button>Find friends</button>
+                    <a href="findfriends.php"><button>Find friends</button></a>
                 </nav>
                 <div class="Home">
                     <img src="pexels-patrik-felker-6220559.jpg" alt="Photo">

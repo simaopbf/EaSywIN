@@ -13,18 +13,39 @@
 <body>
     <div class ="find_friends_container">
         <div class ="find_friends_header">
-           <div class="heading">Find Friends</div>
-           <div class="search">
-            <i class='bx bx-search-alt-2'></i>
-            <input type="text" placeholder="Enter a friend's name">
-           </div>
+        <div class="heading">Find Friends</div>
+
+        <form id="search" action="list_users.php">
+            <div class="search">
+                <i class='bx bx-search-alt-2'></i>
+                <input type="text" name="search_name" placeholder="Enter a friend's name" value="<?php echo $search_name ?>">
+            </div>
+            <button>Search</button>
+            <a href="list_users.php?cat=<?php echo $cat_id ?>">Clear</a>
+        </form>
+
+        <div class="list">
+
+            <?php if ($error_msg == null) { ?>
+            <?php foreach ($users as $row) { ?>
+                <article>
+                <h3><?php echo $_SESSION['username'] ?></h3>
+                </article>
+            <?php } ?>
+            <?php } else {
+            echo $error_msg;
+            } ?>
+
+        </div>
+
         </div>
         <div class ="find_friends_body">
             <div class="user_row">
                 <div class="user_info">
-                    <img src="cr7.jpg" alt="user">
-                    <span>Jason Bond</span>
+                    <img src="images/users/cr7.jpg" alt="user">
+                    <span>Cristiano Ronaldo</span>
                 </div>
+                <button class="action-follow">Follow</button>
             </div>
         </div>
 

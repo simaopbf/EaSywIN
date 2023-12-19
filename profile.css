@@ -78,13 +78,6 @@ a{
     border-radius: 50%;
     display: block;
     box-shadow: 1px 3px 12px rgba(0,0,0,0.18);
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.image-container img:hover {
-    transform: scale(1.1);
-    content: url(camera.jpg);
 }
 
 .header_wrapper .cols_container .left_col .img_container span {

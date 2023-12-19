@@ -13,12 +13,11 @@
   function getUsersBySearch($search_name) {
     global $dbh;
 
-    $query = "SELECT * FROM users WHERE 1 = 1";
-
+    $query = "SELECT * FROM User WHERE 1";
     $params = array();
 
     if ($search_name != '') {
-      $query = $query . ' AND name LIKE ?';
+      $query = $query . ' AND username LIKE ?';
       $params[] = "%$search_name%";
     }
 
@@ -27,15 +26,14 @@
     return $stmt->fetchAll();
   }
 
-  $search_name = $_GET['search_name'];
+  $search_name = isset($_GET['search_name']) ? $_GET['search_name'] : '';
 
   try {
-    if (isset($search_name)) {
-      $users = getUsersBySearch($search_name);
-    } else {
-      $users = getUsersBySearch('');
-    }
+    $users = getUsersBySearch($search_name);
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();
   }
+
+  include('findfriends.php')
+  
 ?>

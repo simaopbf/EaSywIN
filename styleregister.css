@@ -60,20 +60,11 @@ nav .menu{
     margin-top: 20px;
     text-align: center;
     position: relative;
+    margin-bottom: 30px;
 }
 
-.image-container #profile-image{
-    width: 100px;
-    height: 100px;
-    background-size: cover;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.image-container img:hover {
-    transform: scale(1.1);
-    content: url(camera.jpg);
+.image-container input{
+    margin-left: 35px;;
 }
 
 .wrapper h1 {

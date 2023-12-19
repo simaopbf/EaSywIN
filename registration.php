@@ -40,13 +40,6 @@
         <form action="process-signup.php" method="post" enctype="multipart/form-data">
             <h1>Sign Up</h1>
 
-            <div class="image-container">
-                <label for="profile_pic">
-                    <img id="profile-image" src="profile.png">
-                </label>
-                <input type="file" id="profile_pic" name="profile_pic" style="display: none;" accept="image/*" onchange="displayImage(this)">
-            </div>
-
             <?php if (isset($msg)) { ?>
                 <p class="message"><?php echo $msg ?></p>  
             <?php } ?>
@@ -80,24 +73,16 @@
                 <i class='bx bxs-lock-alt'></i>
             </div>
 
+            <div class="image-container">
+                <label for="profile_pic">Upload your profile picture:</label>
+                <input type="file" id="profile_pic" name="profile_pic">
+            </div>
+
             <button type="submit" class="btn">Sign Up</button>
 
             <div class="register-link">
                 <p>Do you already have an account? <a href="login.php">Login</a></p>
             </div>
-
-            <script>
-                function displayImage(input) {
-                    var file = input.files[0];
-                    if (file) {
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                            document.getElementById('profile-image').src = e.target.result;
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                }
-            </script>
         </form>
     </div>
 </body>

@@ -12,6 +12,8 @@
 }
 
 body {
+    width:100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     min-height: 100vh;
@@ -21,10 +23,10 @@ body {
     align-items: center;
 }
 .find_friends_container{
+    width: 400px;
     height: 70vh;
     margin-top: 20vh;
     margin-bottom: 20vh;
-    width: 400px;;
     background:transparent;
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
@@ -42,10 +44,16 @@ body {
     width:100%;
     text-align: center;
     padding: 10px 0;
+    margin-bottom: 20px;
 }
 
 .find_friends_body{
-    border: 2px solid rgba(255, 255, 255, .2);
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 10px;
 }
 
 .find_friends_container .find_friends_header .heading {
@@ -53,9 +61,24 @@ body {
     text-align: center;
 }
 
+.search_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 400px;
+    margin: 0 auto;
+    height: 80px;
+}
+
+.search_container button{
+    margin-right: 10px;
+}
+
 .find_friends_header .search {
     position: relative;
     padding: 25px 0;
+    display: flex;
+    align-items: center;
 }
 
 .find_friends_header .search i{
@@ -84,9 +107,17 @@ body {
 
 .user_row{
     padding: 15px 25px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.line{
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .user_info{
@@ -96,6 +127,7 @@ body {
 
 .user_info img{
     width: 70px;
+    height: 70px;
     border-radius: 50%;
     margin-right: 15px;
     border: 2px solid whitesmoke;
@@ -115,7 +147,7 @@ body {
     width: 80px;
     font-weight: bold;
     transition: all 0.3s ease-in-out;
-    
+    margin-left: 100px;
 }
 
 .action-follow:hover{
@@ -123,4 +155,27 @@ body {
     color:#000000;
     font-weight: bolder;
     cursor: pointer;
+}
+
+#search button,
+#search a {
+    margin-left: 10px;
+    
+}
+
+#search button{
+    height: 40px;
+    width: 80px;
+    border: 2px solid whitesmoke;
+    outline: none;
+    background: gray;
+    border-radius: 20px;
+    color:#f1f1f1;
+    transition: all 0.3s ease-in-out;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+#search a {
+    color: #f1f1f1;
 }

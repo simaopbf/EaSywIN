@@ -1,18 +1,25 @@
 <?php
 session_start();
 
-$check_in=$_POST['date_in'];
-$check_out=$_POST['date_out'];
+$check_in=$_POST['check_in'];
+$check_out=$_POST['check_out'];
 $username= $_SESSION['username'];
 $transport_type=$_POST['transport_type'];
-$n_guests=$_post['number_guests'];
+$n_guests=$_POST['n_guests'];
+$id= $_POST['id'];
+
+
+
+var_dump($id); 
+
+
 
 //passar o id para o form senao nao vai funcionar 
-function insertReservation($check_in, $check_out, $username, $transport_type, $n_guests)
+function insertReservation($check_in, $check_out, $username, $transport_type, $n_guests,$capacity)
 {
   global $dbh;
-  $stmt = $dbh->prepare('INSERT INTO reservation (date_in,date_out,transportation_type,guest,number_of_guests) VALUES (?, ?, ?, ?,?)');
-  $stmt->execute(array($check_in, $check_out, $username, $transport_type, $n_guests));
+  $stmt = $dbh->prepare('INSERT INTO Reservation (date_in,date_out,transportation_type,guest,number_of_guests, capacity) VALUES (?, ?, ?, ?, ?, ?)');
+  $stmt->execute(array($check_in, $check_out, $transport_type, $username, $n_guests,$capacity));
 }
 
 
@@ -25,15 +32,23 @@ try {
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
     $accom = $stmt->fetchAll();
-    if($check_in>=$accom[0]['date_on'] && $check_out<=$accom[0]['date_off']){
-        insertReservation($check_in, $check_out, $username, $transport_type, $n_guests);
+    if( strtotime($check_in)>=$accom[0]['date_on'] && strtotime($check_out)<=$accom[0]['date_off'] &&  $n_guests<= $accom[0]['capacity']){
+        insertReservation($check_in, $check_out, $username, $transport_type, $n_guests, $accom[0]['capacity']);
+        include('homepage.php');
+        die();  
     }
     else{
         $_SESSION['msg'] = 'Check in or Check out out of range';
+        include('applicationReserve.php');
+        die();
     }
 
 }catch (PDOException $e) {
     $_SESSION['msg'] = 'Error: ' . $e->getMessage();
+    //echo $check_in;
+    //$_SESSION['msg'] = "Registration failed! ($error_msg)";
+    include('applicationReserve.php');
+  die();
   }
 
 

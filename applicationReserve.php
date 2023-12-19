@@ -76,11 +76,11 @@
                         <?php if (isset($msg)) { ?>
                             <p class="message"><?php echo $msg ?></p>  
                         <?php } ?>
-                        <div class="input-box">
+                        <div class="input_box">
                             <label for="check_in">Check in:</label>
                             <input type="date" min=<?php echo $accom[0]['date_on']?> max=<?php echo $accom[0]['date_off']?> id="check_in" name="check_in" required>
                         </div>
-                        <div class="input-box">
+                        <div class="input_box">
                             <label for="check_out">Check out:</label>
                             <input type="date" min=<?php echo $accom[0]['date_on']?> max=<?php echo $accom[0]['date_off']?> id="check_out" name="check_out" required>
                         </div>

@@ -73,7 +73,7 @@ try {
                  <div class= "divide">
                     <div class= "house_sec_1">
                     <h3>House: <?php echo $row['host_ac'] ?></h3>
-                   <img src="images/<?php echo $row['image']?>.png" alt="">
+                   <img src="images/accommod/<?php echo $row['address']?>.png" alt="">
                     </div>
                     <div class= "house_sec_2">
                     <h4>City: <?php echo $row['name'] ?></h4>

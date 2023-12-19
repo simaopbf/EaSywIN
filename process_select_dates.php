@@ -32,7 +32,7 @@ try {
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
     $accom = $stmt->fetchAll();
-    if( strtotime($check_in)>=$accom[0]['date_on'] && strtotime($check_out)<=$accom[0]['date_off'] &&  $n_guests<= $accom[0]['capacity']){
+    if( strtotime($check_in)>=strtotime($accom[0]['date_on']) && strtotime($check_out)<=strtotime($accom[0]['date_off']) &&  $n_guests<= $accom[0]['capacity'] && strtotime($check_in)<=strtotime($check_out)){
         insertReservation($check_in, $check_out, $username, $transport_type, $n_guests, $accom[0]['capacity']);
         include('homepage.php');
         die();  
@@ -45,8 +45,7 @@ try {
 
 }catch (PDOException $e) {
     $_SESSION['msg'] = 'Error: ' . $e->getMessage();
-    //echo $check_in;
-    //$_SESSION['msg'] = "Registration failed! ($error_msg)";
+    
     include('applicationReserve.php');
   die();
   }

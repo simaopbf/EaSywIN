@@ -22,6 +22,9 @@ try {
     $stmt = $dbh->query('SELECT * FROM User /*WHERE image IS NOT NULL AND image <> ""*/');
     /*$stmt->execute(array($username));*/
     $user = $stmt->fetchAll();
+    $stmt_accommods = $dbh->prepare('SELECT * FROM Accommodation ORDER BY id ASC');
+    $stmt_accommods->execute();
+    $accommodations = $stmt_accommods->fetchAll();
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();
   }

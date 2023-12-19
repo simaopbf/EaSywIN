@@ -7,48 +7,44 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-$host_username = $_SESSION['username'];
+$host_id = $_SESSION['username'];
+try {
+    $dbh = new PDO('sqlite:sql/database.db');
+    $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    try {
-        $dbh = new PDO('sqlite:sql/database.db');
-        $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Retrieve accommodations associated with the host
+    $stmt_accommodations = $dbh->prepare('SELECT * FROM Accommodation WHERE host_ac = ?');
+    $stmt_accommodations->execute([$host_id]);
+    $accommodations = $stmt_accommodations->fetchAll();
 
-        
-        // Retrieve user ID
-        $stmt_user = $dbh->prepare('SELECT * FROM User WHERE username = ?');
-        $stmt_user->execute([$host_username]);
-        $user = $stmt_user->fetch();
+    // Retrieve form data
+    $accommodation_id = $_POST['accommodation_id'];
+    $date_on = $_POST['date_on'];
+    $date_off = $_POST['date_off'];
+    $descrip = $_POST['descrip'];
+    $priv_publ = $_POST['priv_publ'];
 
-        $host_id = $user['username']; // Use the username as the host_id
+    var_dump($accommodations[0]['city']);
+    // Insert data into the Ad table
+    $stmt_insert = $dbh->prepare('INSERT INTO Ad (host_ad, city, date_on, date_off, descrip, priv_publ, accommodation) VALUES (?, ?, ?, ?, ?, ?, ?)');
+    $stmt_insert->execute([$host_id, $accommodations[0]['city'], $date_on, $date_off, $descrip, $priv_publ, $accommodation_id]);
 
-        // Retrieve accommodations associated with the host
-        $stmt_accommodations = $dbh->prepare('SELECT * FROM Accommodation WHERE host_ac = ?');
-        $stmt_accommodations->execute([$host_id]);
-        $accommodations = $stmt_accommodations->fetchAll();
-    // Check if the form is submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Retrieve form data
-        $accommodation_id = $_POST['accommodation_id'];
-        $address = $_POST['address'];
-        $date_on = $_POST['date_on'];
-        $date_off = $_POST['date_off'];
-        $descrip = $_POST['descrip'];
-        $priv_publ = $_POST['priv_publ'];
-
-        // Insert data into the Ad table
-        $stmt_insert = $dbh->prepare('INSERT INTO Ad (host_ad, city, date_on, date_off, descrip, priv_publ, accommodation) VALUES (?, ?, ?, ?, ?, ?, ?)');
-        $stmt_insert->execute([$host_id, $city, $date_on, $date_off, $descrip, $priv_publ, $accommodation_id]);
-
-        // Check if the insertion was successful
-        if ($stmt_insert->rowCount() > 0) {
-            $msg = "Announcement submitted successfully!";
-        } else {
-            $msg = "Failed to submit announcement. Please try again.";
-        }
+    // Check if the insertion was successful
+    if ($stmt_insert->rowCount() > 0) {
+        $msg = "Announcement submitted successfully!";
+    } else {
+        $msg = "Failed to submit announcement. Please try again.";
     }
+
+    include("announce.php");
+    exit();
 } catch (PDOException $e) {
+    // Handle database error
     $error_msg = $e->getMessage();
+    $_SESSION['msg'] = "Database error: $error_msg";
+    include("announce.php");
+    exit();
 }
 ?>
 

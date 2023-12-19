@@ -57,6 +57,9 @@ try {
                         <div class="input-box">
                             <label for="address">Address:</label>
                             <input type="text" id="address" name="address" placeholder="Enter address" required>
+                            <?php if (isset($error_message)) { ?>
+                            <p class="error-message"><?php echo $error_message ?></p>  
+                            <?php } ?>
                         </div>
 
                         <div class="input-box">
@@ -64,14 +67,14 @@ try {
                             <select id="city" name="city" required>
                                 <?php foreach ($cities as $city) : ?>
                                     <option value="<?php echo $city['name']; ?>"><?php echo $city['name']; ?></option>
-                                    <?php print_r($city); ?>
+                                    <!-- <?php print_r($city); ?> -->
                                 <?php endforeach; ?>
                             </select>
                         </div>
 
                         <div class="input-box">
                             <label for="capacity">Capacity:</label>
-                            <input type="integer" id="capacity" name="capacity" required>
+                            <input type="number" id="capacity" name="capacity" required>
                         </div>
                     </div>
 

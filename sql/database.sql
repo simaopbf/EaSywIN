@@ -55,8 +55,8 @@ CREATE TABLE Ad(
     ad_id INTEGER PRIMARY KEY AUTOINCREMENT,
     host_ad TEXT NOT NULL REFERENCES User,
     city INTEGER NOT NULL REFERENCES City,
-    date_on TEXT NOT NULL,
-    date_off TEXT NOT NULL,
+    date_on DATE NOT NULL,
+    date_off DATE NOT NULL,
     descrip TEXT,
     priv_publ BOOLEAN NOT NULL,
     accommodation INTEGER NOT NULL REFERENCES Accommodation,
@@ -65,8 +65,8 @@ CREATE TABLE Ad(
 
 CREATE TABLE Reservation(
     reservation_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    date_in TEXT NOT NULL,
-    date_out TEXT NOT NULL,
+    date_in DATE NOT NULL,
+    date_out DATE NOT NULL,
     transportation_type TEXT NOT NULL REFERENCES Transportation_type,
     guest TEXT NOT NULL REFERENCES User,
     number_of_guests INTEGER NOT NULL,
@@ -142,4 +142,4 @@ INSERT INTO User VALUES ('a','a','up1@fe.up.pt',2);
 
 INSERT INTO Accommodation VALUES (1,'testing','rua dfgfds',1,2,'bed');
 INSERT INTO Accommodation VALUES (2,'a','rua dfgfds',1,2,'room');
-INSERT INTO Ad VALUES (1,'testing',1,'1/1/2024','1/10/2024','defdsxa',1,1);
+INSERT INTO Ad VALUES (1,'testing',1,'2024-1-1','2024-10-1','defdsxa',1,1);

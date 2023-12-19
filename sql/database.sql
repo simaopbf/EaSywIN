@@ -141,4 +141,4 @@ INSERT INTO User VALUES ('a','a','up1@fe.up.pt',2);
 
 INSERT INTO Accommodation VALUES (1,'testing','rua dfgfds',1,2,'bed');
 INSERT INTO Accommodation VALUES (2,'a','rua dfgfds',1,2,'room');
-INSERT INTO Ad VALUES (1,'testing',1,'1/1/2024','10/1/2024','defdsxa',1,1);
+INSERT INTO Ad VALUES (1,'testing',1,'1/1/2024','1/10/2024','defdsxa',1,1);

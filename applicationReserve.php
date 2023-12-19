@@ -14,8 +14,9 @@
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
     $accom = $stmt->fetchAll();
-    $stmt = $dbh->query('SELECT * FROM City');
-    $city = $stmt->fetchAll();
+    $stmt =  $dbh->prepare('SELECT * FROM Transportation_type');
+    $stmt->execute();
+    $transp_type = $stmt->fetchAll();
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();
   }
@@ -64,13 +65,37 @@
                    <img src="images/<?php echo $accom[0]['image']?>.png" alt="">
                     </div>
                     <div class= "house_sec_2">
-                    <h4>City: <?php echo $accom[0]['name'] ?></h4>
-                    <h4>Weather: <?php echo $accom[0]['meteorology'] ?></h4>
-                    <h4>Capacity:<?php echo $accom[0]['capacity'] ?> </h4>
-                    <h4>Average cost of living per day:<?php echo $accom[0]['average_cost_of_living'] ?> </h4>
-                    
+                        <h4>City: <?php echo $accom[0]['name'] ?></h4>
+                        <h4>Weather: <?php echo $accom[0]['meteorology'] ?></h4>
+                        <h4>Capacity:<?php echo $accom[0]['capacity'] ?> </h4>
+                        <h4>Average cost of living per day:<?php echo $accom[0]['average_cost_of_living'] ?> </h4>
+                        <h4>Description:<?php echo $accom[0]['descrip'] ?> </h4>
+                        <h4>Check in available from: <?php echo $accom[0]['date_on'] ?> </h4>
+                        <h4>Check out available until: <?php echo $accom[0]['date_off'] ?> </h4>
+                        <form action= "process_select_dates.php" method="post">
+                        <div class="input-box">
+                            <label for="check_in">Check in:</label>
+                            <input type="date" id="check_in" name="check_in" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="check_out">Check out:</label>
+                            <input type="date" id="check_out" name="check_out" required>
+                        </div>
+
+                        <label for="transport_type">Method of transportation:</label>
+                        <select id="transport_type" name="transport_type" required>
+                        <?php foreach ($transp_type as $transportation_type) : ?>
+                            <option value="<?= $transportation_type['transportation_name'] ?>"><?= $transportation_type['transportation_name'] ?></option>
+                        <?php endforeach; ?>
+
+
+                        <label for="n_guests">Number of guests:</label>
+                        <input type="number" id="n_guests" name="n_guests" min="1" max="<?php echo $accom[0]['capacity']?>">
+                        </form>
+
+                        <button type="submit" class="btn">Reserve</button>
                     </div>
-                    </div>
+                 </div>
                 </div>
             </div>
            

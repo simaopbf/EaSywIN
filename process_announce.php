@@ -37,7 +37,7 @@ $host_username = $_SESSION['username'];
         $priv_publ = $_POST['priv_publ'];
 
         // Insert data into the Ad table
-        $stmt_insert = $dbh->prepare('INSERT INTO Ad (host_ad, city, date_on, date_off, descrip, priv_publ, accomodation) VALUES (?, ?, ?, ?, ?, ?, ?)');
+        $stmt_insert = $dbh->prepare('INSERT INTO Ad (host_ad, city, date_on, date_off, descrip, priv_publ, accommodation) VALUES (?, ?, ?, ?, ?, ?, ?)');
         $stmt_insert->execute([$host_id, $city, $date_on, $date_off, $descrip, $priv_publ, $accommodation_id]);
 
         // Check if the insertion was successful

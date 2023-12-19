@@ -117,23 +117,24 @@ INSERT INTO Transportation_type VALUES ('Train',0.24);
 /* 
 Cost of living: https://www.numbeo.com/cost-of-living/ 
 Lat and Long: https://latitudelongitude.org/
-Definir 5 valores de meteorologia, de acordo com a temperatura média ao longo do ano
+Meteorologia: https://en.wikipedia.org/wiki/K%C3%B6ppen_climate_classification 
 */
-INSERT INTO City VALUES (1,'Oporto','sol',21.25,41.14961,-8.61099);
-INSERT INTO City VALUES (2,'Lisbon','nevoeiro',23.71,38.71667,-9.13333);
-INSERT INTO City VALUES (3,'Madrid','sol',24.19,40.4165,-3.70256);
-INSERT INTO City VALUES (4,'Barcelona','sol',25.66,41.38879,2.15899);
-INSERT INTO City VALUES (5,'London','nevoeiro',42.33,51.50853,-0.12574);
-INSERT INTO City VALUES (6,'Paris','nevoeiro',35.90,48.85341,2.3488);
-INSERT INTO City VALUES (7,'Rome','sol',29.09,41.89193,12.51133);
-INSERT INTO City VALUES (8,'Milan','sol',21.25,41.14961,-8.61099);
-INSERT INTO City VALUES (9,'Berlin','chuva',21.25,41.14961,-8.61099);
-INSERT INTO City VALUES (10,'Frankfurt','chuva',21.25,41.14961,-8.61099);
-INSERT INTO City VALUES (11,'Vienna','neve',21.25,41.14961,-8.61099);
-INSERT INTO City VALUES (12,'Amsterdam','chuva',21.25,41.14961,-8.61099);
-INSERT INTO City VALUES (13,'Utrecht','chuva',21.25,41.14961,-8.61099);
-INSERT INTO City VALUES (14,'Prague','neve',21.25,41.14961,-8.61099);
-INSERT INTO City VALUES (15,'Brussels','escaldar',21.25,41.14961,-8.61099);
+
+INSERT INTO City VALUES (1,'Oporto','C',21.25,41.14961,-8.61099);
+INSERT INTO City VALUES (2,'Lisbon','C',23.71,38.71667,-9.13333);
+INSERT INTO City VALUES (3,'Madrid','B',24.19,40.4165,-3.70256);
+INSERT INTO City VALUES (4,'Barcelona','C',25.66,41.38879,2.15899);
+INSERT INTO City VALUES (5,'London','C',42.33,51.50853,-0.12574);
+INSERT INTO City VALUES (6,'Paris','C',35.90,48.85341,2.3488);
+INSERT INTO City VALUES (7,'Rome','C',29.09,41.89193,12.51133);
+INSERT INTO City VALUES (8,'Milano','C',33.68,45.46427,9.18951);
+INSERT INTO City VALUES (9,'Berlin','C',33.57,52.52437,13.41053);
+INSERT INTO City VALUES (10,'Frankfurt','C',31.97,50.11552,8.68417);
+INSERT INTO City VALUES (11,'Vienna','C',32.64,48.20849,16.37208);
+INSERT INTO City VALUES (12,'Amsterdam','C',32.49,52.37403,4.88969);
+INSERT INTO City VALUES (13,'Utrecht','C',31.65,52.09083,5.12222);
+INSERT INTO City VALUES (14,'Prague','D',31.95,50.08804, 14.42076);
+INSERT INTO City VALUES (15,'Brussels','C',32.64,50.85045, 4.34878);
 
 
 INSERT INTO User VALUES ('testing','12345678','up0@fe.up.pt',1);

@@ -53,7 +53,7 @@
                 <form id="search" action="list_users.php" class="search_container">
                     <div class="search">
                         <i class='bx bx-search-alt-2'></i>
-                        <input type="text" name="search_name" placeholder="Friend's name" value="<?php echo $search_name ?>">
+                        <input type="text" name="search_name" placeholder="Friend's name" value="<?php echo isset($search_name) ? $search_name : ''; ?>">
                     </div>
                     <button type="submit">Search</button>
                     <a href="list_users.php">Clear</a>
@@ -63,7 +63,7 @@
                     <?php if (isset($users) && is_array($users) && count($users) > 0) { ?>
                         <div class = "user_row">
                             <?php foreach ($users as $row) { ?>
-                                <form action="process-follow.php" method="post">
+                                <form action="process-follow.php" method="post" class="user_form">
                                     <div class="user_info">
                                         <?php
                                             $userImage = "images/users/" . $row['username'] . ".jpg";

@@ -90,9 +90,6 @@ try {
     </nav>
     </div> 
         
-    <!--<div class="image_top">
-        <img src="pexels-patrik-felker-6220559.jpg">
-    </div> -->
     <div class = "header_wrapper">
         <header></header>
         <div class="cols_container">
@@ -142,7 +139,7 @@ try {
                         <li><a href="#">Friends</a></li>
                         <li><a href="#">Reservations</a></li>
                     </ul>
-                    <a href="findfriends.php"><button>Find friends</button></a>
+                    <a href="list_users.php"><button>Find friends</button></a>
                 </nav>
                 <div class="Home">
                     <?php foreach ($accommodations as $accommodation) : ?>

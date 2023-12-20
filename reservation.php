@@ -105,7 +105,7 @@ try {
                     </div>
                     <div class= "house_sec_2">
                     <h4>City: <?php echo $row['name'] ?></h4>
-                    <a href="city.php?id=<?=$row['name']?>"><button>Reserve</button></a>
+                    <a href="city.php?id=<?=$row['name']?>"><button>City information</button></a>
                     <h4>Weather: <?php echo $row['common_name'] ?></h4>
                         <?php
                             echo "<p>Cold Months: {$row['avg_cold']} Hot Months: {$row['avg_hot']} Precipitation: {$row['precipitation']}</p>";

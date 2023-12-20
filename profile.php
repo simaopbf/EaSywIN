@@ -137,7 +137,7 @@ try {
                 <nav class="right-column-nav">
                     
                     <a href="list_users.php"><button>Find friends</button></a>
-                    <a href="#"><button>Reservations</button></a>
+                    <a href="myReservations.php"><button>Reservations</button></a>
                 </nav>
 
                 <h2>Homes</h2>

@@ -40,6 +40,14 @@ try {
         $phone = 'N/A'; 
     }
     
+    $stmt_accommodations = $dbh->prepare('SELECT * FROM Accommodation  WHERE host_ac = :username');
+    $stmt_accommodations->bindParam(':username', $_SESSION['username']);
+    $stmt_accommodations->execute();
+    $accommodations = $stmt_accommodations->fetchAll();
+
+    // Count the number of accommodations
+    $home_count = count($accommodations);
+
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();
   }
@@ -115,7 +123,7 @@ try {
 
                 <ul class="about">
                     <li><span>25</span>Friends</li>
-                    <li><span>2</span>Homes</li>
+                    <li><span><?php echo $home_count; ?></span>Homes</li>
                 </ul>
 
                 <div class="content">
@@ -130,18 +138,27 @@ try {
             <div class="right_col">
                 <nav class="right-column-nav">
                     <ul>
-                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Homes</a></li>
                         <li><a href="#">Friends</a></li>
                         <li><a href="#">Reservations</a></li>
                     </ul>
                     <a href="findfriends.php"><button>Find friends</button></a>
                 </nav>
                 <div class="Home">
-                    <img src="pexels-patrik-felker-6220559.jpg" alt="Photo">
-                    <img src="pexels-patrik-felker-6220559.jpg" alt="Photo">
-                    <img src="pexels-patrik-felker-6220559.jpg" alt="Photo">
-                    <img src="pexels-patrik-felker-6220559.jpg" alt="Photo">
-                    <img src="pexels-patrik-felker-6220559.jpg" alt="Photo">
+                    <?php foreach ($accommodations as $accommodation) : ?>
+                        <?php
+                            // Generate the image path based on the address
+                            $imagePath = "images/accommod/" . $accommodation['address'] . ".png";
+                            $defaultImageA = "profile.png";
+
+                            if (file_exists($imagePath)) {
+                                $imageSource = $imagePath;
+                            } else {
+                                $imageSource = $defaultImageA;
+                            }
+                        ?>
+                        <img src="<?php echo $imageSource; ?>" alt="Accommodation Photo">
+                    <?php endforeach; ?>
                 </div>
             
             </div>

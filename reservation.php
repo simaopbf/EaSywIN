@@ -81,6 +81,7 @@ try {
                     <div class= "house_sec_2">
                     <h4>City: <?php echo $row['name'] ?></h4>
                     <h4>Weather: <?php echo $row['meteorology'] ?></h4>
+                    <a href="climate_details.php?city_id=<?php echo $row['city_id'] ?>"><button>View Climate Details</button></a>
                     <h4>Capacity: <?php echo $row['capacity'] ?> </h4>
                     <h4>id: <?php echo $row['id'] ?> </h4>
                     <h4>Average cost of living per day: <?php echo $row['average_cost_of_living'] ?> </h4>

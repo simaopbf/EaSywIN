@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family:"Poppins", sans-serif;
+    scroll-behavior: smooth;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background: url(pexels-patrik-felker-6220559.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+img{
+    width:100%;
+}
+
+nav{
+    position: fixed;
+    background-color: rgba(0,0,0,0.4);
+    width: 100%;
+    margin: auto;
+    padding: 10px 0;
+    z-index: 12;
+}
+nav .menu{
+    max-width: 1250px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+.menu .logo a{
+    text-decoration: none;
+    color:#fff;
+    font-size: 35px;
+    font-weight: 600;
+}
+
+.wrapper {
+    height: 100%;
+    margin-top: 20vh;
+    width: 350px;
+    background:transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px; 
+}
+
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+.wrapper h2 {
+    font-size: 15px;
+    text-align: center;
+}
+
+
+.wrapper .data h4{
+    display: flow-root;
+    width: 50%;
+    align-items: center;
+    margin-top: 5%;
+    font-size: 15px;
+}
+
+.backgroundcolor{
+    border: 2px solid rgba(255, 255, 255, .2);
+}
+
+.wrapper .back {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.back p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back p a:hover {
+    text-decoration: underline;
+}
+
+
+
+@media (max-width: 600px){
+    .menu .logo a{
+        font-size: 5dvw;
+    }
+    
+    .menu ul li{
+        margin-left: 1vw;
+    }
+    
+    .menu ul li:first-child{
+        margin-left: 2vw;
+    }
+    
+    .menu ul li a{
+        font-size: 3dvw;
+    }
+    .wrapper {
+        width: 70vw;
+    }
+    .wrapper h1 {
+        font-size: 5dvw;
+
+    }
+}

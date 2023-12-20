@@ -25,7 +25,7 @@ try {
     $user = $stmt->fetchAll();
     $stmt = $dbh->query('SELECT * FROM Accommodation 
                         INNER JOIN City ON City.city_id =Accommodation.city 
-                        INNER JOIN Climate ON Climate.id = City.meteorology');
+                        INNER JOIN Climate ON Climate.id_climate = City.meteorology');
     $accom = $stmt->fetchAll();
     $stmt = $dbh->query('SELECT * FROM Ad');
     $ad = $stmt->fetchAll();

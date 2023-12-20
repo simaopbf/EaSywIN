@@ -105,7 +105,7 @@ CREATE TABLE Budget(
     /*cost_of_living INTEGER NOT NULL, 
     cost_per_km INTEGER NOT NULL,*/
     distance INTEGER NOT NULL,
-    CHECK (distance>0),
+    CHECK (distance>=0),
     CHECK (duration>0),
     CHECK (total>0)
 );
@@ -177,9 +177,10 @@ INSERT INTO City VALUES (15,'Brussels','Cfb',32.64,50.85045, 4.34878);
 
 
 
-INSERT INTO User VALUES ('testing','12345678','up0@fe.up.pt',1);
+/* INSERT INTO User VALUES ('testing','12345678','up0@fe.up.pt',1);
 INSERT INTO User VALUES ('a','a','up1@fe.up.pt',2);
 
 INSERT INTO Accommodation VALUES (1,'testing','rua dfgfds',1,2);
 INSERT INTO Accommodation VALUES (2,'a','rua dfgfds',1,2);
 INSERT INTO Ad VALUES (1,'testing',1,'2024-1-1','2024-10-1','defdsxa',1,1);
+ */

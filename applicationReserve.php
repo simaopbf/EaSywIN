@@ -10,7 +10,7 @@
     $dbh = new PDO('sqlite:sql/database.db');
     $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $dbh->prepare('SELECT * FROM Accommodation INNER JOIN City ON City.city_id =Accommodation.city INNER JOIN Ad ON Ad.host_ad=Accommodation.host_ac WHERE Accommodation.id=?');
+    $stmt = $dbh->prepare('SELECT * FROM Accommodation INNER JOIN City ON City.city_id =Accommodation.city INNER JOIN Ad ON Ad.accommodation=Accommodation.id WHERE Accommodation.id=?');
     //$stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute([$id]);
     $accom = $stmt->fetch();

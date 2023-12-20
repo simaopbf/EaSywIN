@@ -48,8 +48,8 @@ try {
 }
 ?>
 
-<?php if (isset($msg)) : ?>
+<!-- <?php if (isset($msg)) : ?>
     <div class="message">
         <?= $msg ?>
     </div>
-<?php endif; ?>
+<?php endif; ?>  -->

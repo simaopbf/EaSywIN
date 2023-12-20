@@ -16,14 +16,15 @@
   $stmt->execute(array($cat_id));
   $category = $stmt->fetch(); */
 try {
+    $username=$_SESSION['username'];
     $dbh = new PDO('sqlite:sql/database.db');
     $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $dbh->query('SELECT * FROM User /*WHERE image IS NOT NULL AND image <> ""*/');
     /*$stmt->execute(array($username));*/
     $user = $stmt->fetchAll();
-    $stmt_accommods = $dbh->prepare('SELECT * FROM Accommodation ORDER BY id ASC');
-    $stmt_accommods->execute();
+    $stmt_accommods = $dbh->prepare('SELECT * FROM Accommodation /*ORDER BY id ASC*/ WHERE host_ac = ?');
+    $stmt_accommods->execute([$username]);
     $accommodations = $stmt_accommods->fetchAll();
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();

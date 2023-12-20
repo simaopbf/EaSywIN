@@ -8,13 +8,6 @@ $transport_type=$_POST['transport_type'];
 $n_guests=$_POST['n_guests'];
 $id= $_POST['id'];
 
-
-
-var_dump($id); 
-
-
-
-//passar o id para o form senao nao vai funcionar 
 function insertReservation($check_in, $check_out, $username, $transport_type, $n_guests,$capacity)
 {
   global $dbh;
@@ -28,7 +21,7 @@ try {
     $dbh = new PDO('sqlite:sql/database.db');
     $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $dbh->prepare('SELECT * FROM Accommodation INNER JOIN City ON City.id =Accommodation.city INNER JOIN Ad ON Ad.accommodation= Accommodation.id WHERE Accommodation.id=:id');
+    $stmt = $dbh->prepare('SELECT * FROM Accommodation INNER JOIN City ON City.city_id =Accommodation.city INNER JOIN Ad ON Ad.accommodation= Accommodation.id WHERE Accommodation.id=:id');
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
     $accom = $stmt->fetchAll();
@@ -39,7 +32,9 @@ try {
     }
     else{
         $_SESSION['msg'] = 'Check in or Check out out of range';
-        include('applicationReserve.php');
+        $redirectUrl = 'applicationReserve.php';
+        $redirectUrl .= '?id=' . urlencode($id);
+         header('Location:'. $redirectUrl);
         die();
     }
 

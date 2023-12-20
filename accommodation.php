@@ -50,7 +50,7 @@ try {
     </nav>
     <div class="center">
         <div class="wrapper">
-            <form action="submit_home.php" method="POST">
+            <form action="submit_home.php" method="POST" enctype="multipart/form-data">
                  <h1>Add Accommodation</h1>
                  <div class="cols_container">
                     <div class = "left_col">

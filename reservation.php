@@ -23,10 +23,12 @@ try {
     
     /*$stmt->execute(array($username));*/
     $user = $stmt->fetchAll();
-    $stmt = $dbh->query('SELECT * FROM Accommodation INNER JOIN City ON City.id =Accommodation.city');
+    $stmt = $dbh->query('SELECT * FROM Accommodation INNER JOIN City ON City.city_id =Accommodation.city');
     $accom = $stmt->fetchAll();
     $stmt = $dbh->query('SELECT * FROM City');
-    $city = $stmt->fetchAll();
+    $accom = $stmt->fetchAll();
+    $stmt = $dbh->query('SELECT * FROM Ad');
+    $ad = $stmt->fetchAll();
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();
   }
@@ -62,7 +64,7 @@ try {
         </div>
     </nav>
     
-
+<?php $today = date("d/m/Y H:i:s", strtotime('today')); ?>
     </div>
     <div class="center">
         <div class="wrapper">
@@ -70,7 +72,8 @@ try {
              
              <?php if ($error_msg == null) { 
                  foreach ($accom as $row) {?>
-                 <div class= "divide">
+                
+                    <div class= "divide">
                     <div class= "house_sec_1">
                     <h3>House: <?php echo $row['host_ac'] ?></h3>
                    <img src="images/accommod/<?php echo $row['address']?>.png" alt="">

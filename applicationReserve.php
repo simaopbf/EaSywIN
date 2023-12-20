@@ -10,10 +10,10 @@
     $dbh = new PDO('sqlite:sql/database.db');
     $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $dbh->prepare('SELECT * FROM Accommodation INNER JOIN City ON City.id =Accommodation.city INNER JOIN Ad ON Ad.accommodation= Accommodation.id WHERE Accommodation.id=:id');
-    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-    $stmt->execute();
-    $accom = $stmt->fetchAll();
+    $stmt = $dbh->prepare('SELECT * FROM Accommodation INNER JOIN City ON City.city_id =Accommodation.city INNER JOIN Ad ON Ad.host_ad=Accommodation.host_ac WHERE Accommodation.id=?');
+    //$stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    $stmt->execute([$id]);
+    $accom = $stmt->fetch();
     $stmt =  $dbh->prepare('SELECT * FROM Transportation_type');
     $stmt->execute();
     $transp_type = $stmt->fetchAll();
@@ -61,28 +61,28 @@
              <h1> <?php echo $id ?> </h1>
                  <div class= "divide">
                     <div class= "house_sec_1">
-                    <h3>House: <?php echo $accom[0]['host_ad'] ?> </h3>
-                   <img src="images/<?php echo $accom[0]['image']?>.png" alt="">
+                    <h3>House: <?php echo $accom['host_ad'] ?> </h3>
+                   <img src="images/accommod/<?php echo $accom['address']?>.png" alt="">
                     </div>
                     <div class= "house_sec_2">
-                        <h4>City: <?php echo $accom[0]['name'] ?></h4>
-                        <h4>Weather: <?php echo $accom[0]['meteorology'] ?></h4>
-                        <h4>Capacity:<?php echo $accom[0]['capacity'] ?> </h4>
-                        <h4>Average cost of living per day:<?php echo $accom[0]['average_cost_of_living'] ?> </h4>
-                        <h4>Description:<?php echo $accom[0]['descrip'] ?> </h4>
-                        <h4>Check in available from: <?php echo $accom[0]['date_on'] ?> </h4>
-                        <h4>Check out available until: <?php echo $accom[0]['date_off'] ?> </h4>
+                        <h4>City: <?php echo $accom['name'] ?></h4>
+                        <h4>Weather: <?php echo $accom['meteorology'] ?></h4>
+                        <h4>Capacity:<?php echo $accom['capacity'] ?> </h4>
+                        <h4>Average cost of living per day:<?php echo $accom['average_cost_of_living'] ?> </h4>
+                        <h4>Description:<?php echo $accom['descrip'] ?> </h4>
+                        <h4>Check in available from: <?php echo $accom['date_on'] ?> </h4>
+                        <h4>Check out available until: <?php echo $accom['date_off'] ?> </h4>
                         <form action= "process_select_dates.php" method="post">
                         <?php if (isset($msg)) { ?>
                             <p class="message"><?php echo $msg ?></p>  
                         <?php } ?>
                         <div class="input_box">
                             <label for="check_in">Check in:</label>
-                            <input type="date" min=<?php echo $accom[0]['date_on']?> max=<?php echo $accom[0]['date_off']?> id="check_in" name="check_in" required>
+                            <input type="date" min=<?php echo $accom['date_on']?> max=<?php echo $accom['date_off']?> id="check_in" name="check_in" required>
                         </div>
                         <div class="input_box">
                             <label for="check_out">Check out:</label>
-                            <input type="date" min=<?php echo $accom[0]['date_on']?> max=<?php echo $accom[0]['date_off']?> id="check_out" name="check_out" required>
+                            <input type="date" min=<?php echo $accom['date_on']?> max=<?php echo $accom['date_off']?> id="check_out" name="check_out" required>
                         </div>
 
                         <label for="transport_type">Method of transportation:</label>
@@ -93,7 +93,7 @@
 
 
                         <label for="n_guests">Number of guests:</label>
-                        <input type="number" id="n_guests" name="n_guests" min="1" max="<?php echo $accom[0]['capacity']?>">
+                        <input type="number" id="n_guests" name="n_guests" min="1" max="<?php echo $accom['capacity']?>">
                         
                         <input type="hidden" id="id" name="id" value="<?php echo $id ?>">
                         <button type="submit" class="btn">Reserve</button>

@@ -10,7 +10,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 function saveAccommodPic($address) {
-    move_uploaded_file($_FILES['accommod_pic']['tmp_name'], "images/accommod/$address.jpg");
+    move_uploaded_file($_FILES['accommod_pic']['tmp_name'], "images/accommod/$address.png");
 }
 
 try {
@@ -22,21 +22,23 @@ try {
     // $stmt_user = $dbh->prepare('SELECT * FROM User WHERE username = ?');
     // $stmt_user->execute([$_SESSION['username']]);
     // $user = $stmt_user->fetch();
-    saveAccommodPic($address);
+    
 
     // Retrieve form data
     $address = $_POST['address']; 
     $city = $_POST['city'];
     $capacity = $_POST['capacity'];
-
+    $accommod_pic=$_POST['accommod_pic'];
+    saveAccommodPic($address);
+    var_dump($address);
     // Get the ID of the selected city
-    $stmt_get_city_id = $dbh->prepare('SELECT id FROM City WHERE name = ?');
+    $stmt_get_city_id = $dbh->prepare('SELECT city_id FROM City WHERE name = ?');
     $stmt_get_city_id->execute([$city]);
     $city_id = $stmt_get_city_id->fetch();
 
     // Insert data into Accommodation table
     $stmt_insert = $dbh->prepare('INSERT INTO Accommodation (host_ac, address, city, capacity) VALUES (?, ?, ?, ?)');
-    $stmt_insert->execute([$username, $address, $city_id['id'], $capacity]);
+    $stmt_insert->execute([$username, $address, $city_id['city_id'], $capacity]);
     
     // Check if the insertion was successful
     if ($stmt_insert->rowCount() > 0) {
@@ -53,7 +55,7 @@ try {
     // $stmt_insert->execute([$user['username'], $address, $city, $capacity]);
     
     // Redirect back to the profile page
-    header("Location: profile.php");
+    include("profile.php");
     exit();
 
 } catch (PDOException $e) {

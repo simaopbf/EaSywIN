@@ -28,9 +28,9 @@ CREATE TABLE User(
 
 CREATE TABLE Friend(
     connection_id INTEGER PRIMARY KEY,
-    user1_id INTEGER REFERENCES User(id),
-    user2_id INTEGER REFERENCES User(id),
-    CHECK(user1_id <> user2_id)
+    user1_name TEXT REFERENCES User(username),
+    user2_name TEXT REFERENCES User(username),
+    CHECK(user1_name <> user2_name)
 );
 
 /*tirar host e guest
@@ -81,7 +81,7 @@ CREATE TABLE Transportation_type(
 );
 
 CREATE TABLE City(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    city_id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     meteorology TEXT NOT NULL,
     average_cost_of_living REAL NOT NULL,
@@ -177,6 +177,6 @@ INSERT INTO Climate VALUES ("EF","Glacial","<-38ºC","<0ºC","~30mm monthly");
 INSERT INTO User VALUES ('testing','12345678','up0@fe.up.pt',1);
 INSERT INTO User VALUES ('a','a','up1@fe.up.pt',2);
 
--- INSERT INTO Accommodation VALUES (1,'testing','rua dfgfds',1,2,'bed');
--- INSERT INTO Accommodation VALUES (2,'a','rua dfgfds',1,2,'room');
--- INSERT INTO Ad VALUES (1,'testing',1,'2024-1-1','2024-10-1','defdsxa',1,1);
+INSERT INTO Accommodation VALUES (1,'testing','rua dfgfds',1,2);
+INSERT INTO Accommodation VALUES (2,'a','rua dfgfds',1,2);
+INSERT INTO Ad VALUES (1,'testing',1,'2024-1-1','2024-10-1','defdsxa',1,1);

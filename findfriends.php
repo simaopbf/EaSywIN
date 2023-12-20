@@ -4,6 +4,9 @@
   $userImage = "images/users/" . $row['username'] . ".jpg";
   $defaultImage = "profile.png";
 
+  $userImage = "images/users/" . $_SESSION['username'] . ".jpg";
+  $defaultImage = "profile.png";
+
     function checkIfFollowing($followedUsername){
     global $dbh;
 
@@ -27,6 +30,7 @@
         } else {
             $imageSource = $defaultImage;
         }
+    
         
     } catch (PDOException $e) {
         $error_msg = $e->getMessage();
@@ -40,12 +44,33 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE-edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EasyWin FindFriends</title>
+<title>FindFriends</title>
 <link rel="stylesheet" href="findfriends.css">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
+    <nav>
+            <div class="menu">
+                <div class="logo">
+                    <a href="homepage.php">EasyInn</a>
+                </div>
+                <ul>
+                    <?php if (!isset($_SESSION['username'])) { ?>   
+                        <li><a class="backgroundcolor" href="login.php"> <i class='bx bxs-user'></i>  Login</a> </li>
+                    <?php } else { ?>
+                            <li>
+                                <a class="backgroundcolor" href="profile.php">
+                                <img src="<?php echo $imageSource; ?>">
+                                    <span><?php echo $_SESSION['username'] ?></span>
+                                </a>
+                            </li>
+                    <?php } ?>
+        
+                </ul>
+            </div>
+    </nav>
+    
     <div class ="find_friends_container">
         <div class ="find_friends_header">
             <div class="heading">Find Friends</div>

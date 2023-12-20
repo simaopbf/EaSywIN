@@ -4,28 +4,27 @@
   $msg = $_SESSION['msg'];
   unset($_SESSION['msg']);
 
-  /* $dbh = new PDO('sqlite:sql/products.db');
-  $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $userImage = "images/users/" . $_SESSION['username'] . ".jpg";
+  $defaultImage = "profile.png";
 
-  $stmt = $dbh->prepare('SELECT * FROM Product WHERE cat_id=?');
-  $stmt->execute(array($cat_id));
-  $products = $stmt->fetchAll();
-
-  $stmt = $dbh->prepare('SELECT name FROM Category WHERE id=?');
-  $stmt->execute(array($cat_id));
-  $category = $stmt->fetch(); */
 try {
     $username=$_SESSION['username'];
     $dbh = new PDO('sqlite:sql/database.db');
     $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $dbh->query('SELECT * FROM User /*WHERE image IS NOT NULL AND image <> ""*/');
-    /*$stmt->execute(array($username));*/
+    
+    $stmt = $dbh->query('SELECT * FROM User');
     $user = $stmt->fetchAll();
     $stmt_accommods = $dbh->prepare('SELECT * FROM Accommodation /*ORDER BY id ASC*/ WHERE host_ac = ?');
     $stmt_accommods->execute([$username]);
     $accommodations = $stmt_accommods->fetchAll();
+
+    if (file_exists($userImage)) {
+        $imageSource = $userImage;
+    } else {
+        $imageSource = $defaultImage;
+    }
+
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();
   }
@@ -39,7 +38,7 @@ try {
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE-edge">
 <meta name="viewport" content="widt=device-width, initial-scale=1.0">
-<title>EasyWin Home</title>
+<title>Announce</title>
 <link rel="stylesheet" href="styleAnnounce.css">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <head>
@@ -47,13 +46,22 @@ try {
     <nav>
         <div class="menu">
             <div class="logo">
-                <a href="homepage.php">EasyWIN</a>
+                <a href="homepage.php">EasyInn</a>
             </div>
             <ul>
             <?php if (!isset($_SESSION['username'])) { ?>   
                     <li><a class="backgroundcolor" href="login.php"> <i class='bx bxs-user'></i>  Login</a> </li>
                 <?php } else { ?>
-                        <li><a class="backgroundcolor" href="profile.php"><i class='bx bxs-user'></i>  Profile </a>  </li>
+                        <li>
+                            <a class="backgroundcolor" href="profile.php">
+                                <img src="<?php echo $imageSource; ?>">
+                                <span><?php echo $_SESSION['username'] ?></span>
+                            </a>
+                        </li>
+                <?php } ?>    
+
+                <?php if (isset($msg)) { ?>
+                    <p><?php echo $msg ?></p>
                 <?php } ?>
             </ul>
         </div>

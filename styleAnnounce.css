@@ -11,10 +11,7 @@
 body {
     display: flex;
     justify-content: center;
-    min-height: 100vh;
-    background: url(pexels-patrik-felker-6220559.jpg) no-repeat;
-    background-size: cover;
-    background-position: center;
+    background: url(pexels-patrik-felker-6220559.jpg) no-repeat center/cover fixed;;
     font-size: 16px;
 }
 
@@ -66,16 +63,35 @@ nav .menu {
     border-radius: 25px;
     transition: all 0.3s ease-in-out;
 }
+
+.menu ul li a.backgroundcolor {
+    display: flex;
+    align-items: center;
+}
+
+.menu ul li a.backgroundcolor img {
+    margin-right: 10px;
+}
+
 .menu ul li a:hover{
     font-weight: 530;
     background:whitesmoke;
     color:#000000;
 }
+
+.menu ul li a:hover{
+    font-weight: 530;
+    background:whitesmoke;
+    color:#000000;
+}
+
+.menu img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
 .center {
-    /*display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 80vh;*/
     position: absolute;
     width: 40%;
     margin: auto;
@@ -84,7 +100,7 @@ nav .menu {
 .wrapper {
     margin: auto;
     height: 100%;
-    margin-top: 20vh;
+    margin-top: 12vh;
     width: 90%;
     background:transparent;
     border: 2px solid rgba(255, 255, 255, .2);
@@ -102,13 +118,16 @@ nav .menu {
 }
 
 .wrapper .input-box {
-    position: relative;
+    position:relative;
     width: 100%;
     height: 50px;
     margin: 30px 0;
+    align-items: center;
+    margin-top: 50px;
 }
 
 .input-box input {
+    color-scheme: dark;
     width: 100%;
     height: 100%;
     background: transparent;
@@ -198,15 +217,15 @@ nav .menu {
 .wrapper .privacy-choice {
     display: flex;
     align-items: center;
-    margin-bottom: 20px; /* Add margin-bottom for spacing */
+    margin-bottom: 20px; 
 }
 
 .wrapper .privacy-choice label {
-    margin-right: 10px; /* Adjust margin-right for spacing between label and input */
+    margin-right: 10px;
 }
 
 .wrapper .privacy-choice input {
-    margin-right: 5px; /* Adjust margin-right for spacing between input and label */
+    margin-right: 5px;
 }
 
 .wrapper .input-box-pp {
@@ -225,7 +244,7 @@ nav .menu {
     border-radius: 40px;
     font-size: 16px;
     color: #fff;
-    padding: 10px 20px; /* Adjust padding as needed */
+    padding: 10px 20px;
     box-sizing: border-box;
 }
 
@@ -239,12 +258,12 @@ nav .menu {
     border-radius: 40px;
     font-size: 16px;
     color: #fff;
-    padding: 10px 20px; /* Adjust padding as needed */
+    padding: 10px 20px;
     box-sizing: border-box;
 }
 
 .wrapper .input-box button {
-    width: 100%;
+    width: 200px;
     height: 45px;
     background:transparent;
     border: 2px solid rgba(255, 255, 255, 0.2);
@@ -255,7 +274,33 @@ nav .menu {
     font-size: 16px;
     color: #fff;
     font-weight: 600;
+    margin: 20px auto 0;
+    display: block;;
+}
+
+.wrapper .input-box button:hover {
+    width: 200px;
+    height: 45px;
+    background:whitesmoke;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 2055, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #000000;
+    font-weight: 600;
     margin-top: 0px;
+}
+
+.input-box button{
+    width: min-content;
+    margin-left: 200px;
+}
+
+option{
+    color:#000000;
+    background-color: whitesmoke;
 }
 
 @media (max-width: 600px) {

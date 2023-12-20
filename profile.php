@@ -45,8 +45,14 @@ try {
     $stmt_accommodations->execute();
     $accommodations = $stmt_accommodations->fetchAll();
 
-    // Count the number of accommodations
     $home_count = count($accommodations);
+
+    $stmt_followers = $dbh->prepare('SELECT * FROM Friend  WHERE user2_name = :username');
+    $stmt_followers->bindParam(':username', $_SESSION['username']);
+    $stmt_followers->execute();
+    $followers = $stmt_followers->fetchAll();
+
+    $followers_count = count($followers);
 
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();
@@ -69,11 +75,9 @@ try {
     <nav>
         <div class="menu">
             <div class="logo">
-                <a href="homepage.php">EasyWIN</a>
+                <a href="homepage.php">EasyInn</a>
             </div>
             <ul>
-                <li><a href="#">Maps</a> </li>
-                <li><a href="#howitworks">How it works</a> </li> 
                 <?php if (!isset($_SESSION['username'])) { ?>   
                     <li><a class="backgroundcolor" href="login.php"> <i class='bx bxs-user'></i>  Login</a> </li>
                 <?php } else { ?>
@@ -84,7 +88,7 @@ try {
                             </a>
                         </li>
                 <?php } ?>
-    
+
             </ul>
         </div>
     </nav>
@@ -96,10 +100,7 @@ try {
             <div class ="left_col">
                 <form action="process-signup.php" method="post" enctype="multipart/form-data">
                     <div class="image-container">
-                        <label for="profile_pic">
-                            <img id="profile-image" src="<?php echo $imageSource; ?>">
-                        </label>
-                        <input type="file" id="profile_pic" name="profile_pic" style="display: none;" accept="image/*" onchange="displayImage(this)">
+                    <img src="<?php echo $imageSource; ?>">
                     </div>
                 </form>
 
@@ -119,7 +120,7 @@ try {
                 </div>
 
                 <ul class="about">
-                    <li><span>25</span>Friends</li>
+                    <li><span><?php echo $followers_count; ?></span><a href="followers.php">Followers</a></li>
                     <li><span><?php echo $home_count; ?></span>Homes</li>
                 </ul>
 
@@ -134,17 +135,15 @@ try {
 
             <div class="right_col">
                 <nav class="right-column-nav">
-                    <ul>
-                        <li><a href="#">Homes</a></li>
-                        <li><a href="#">Friends</a></li>
-                        <li><a href="#">Reservations</a></li>
-                    </ul>
+                    
                     <a href="list_users.php"><button>Find friends</button></a>
+                    <a href="#"><button>Reservations</button></a>
                 </nav>
+
+                <h2>Homes</h2>
                 <div class="Home">
                     <?php foreach ($accommodations as $accommodation) : ?>
                         <?php
-                            // Generate the image path based on the address
                             $imagePath = "images/accommod/" . $accommodation['address'] . ".png";
                             $defaultImageA = "profile.png";
 

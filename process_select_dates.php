@@ -54,8 +54,11 @@ try {
     if( strtotime($check_in)>=strtotime($accom[0]['date_on']) && strtotime($check_out)<=strtotime($accom[0]['date_off']) &&  $n_guests<= $accom[0]['capacity'] && strtotime($check_in)<=strtotime($check_out)){
         insertReservation($check_in, $check_out, $accom[0]['ad_id'], $username, $transport_type, $n_guests,$accom[0]['host_ac'], $accom[0]['capacity']);
         insertBudget($total, $duration,$accom[0]['ad_id'], $distance);
+        $stmt = $dbh->prepare('DELETE FROM Ad WHERE ad_id =?');
+        $stmt-> execute([$accom[0]['ad_id']]);
         include('homepage.php');
         die();  
+
     }
     else{
         $_SESSION['msg'] = 'Check in or Check out out of range';
@@ -64,6 +67,7 @@ try {
          header('Location:'. $redirectUrl);
         die();
     }
+
 
 }catch (PDOException $e) {
     $_SESSION['msg'] = 'Error: ' . $e->getMessage();

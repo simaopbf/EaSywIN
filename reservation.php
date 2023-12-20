@@ -19,6 +19,8 @@ try {
     $accom = $stmt->fetchAll();
     $stmt = $dbh->query('SELECT * FROM Ad');
     $ad = $stmt->fetchAll();
+    
+    
     if (file_exists($userImage)) {
         $imageSource = $userImage;
     } else {
@@ -38,7 +40,7 @@ try {
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE-edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EasyWin Home</title>
+<title>Reserve</title>
 <link rel="stylesheet" href="styleReservations.css">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <head>
@@ -46,7 +48,7 @@ try {
 <nav>
         <div class="menu">
             <div class="logo">
-                <a href="homepage.php">EasyWIN</a>
+                <a href="homepage.php">EasyInn</a>
             </div>
             <ul>
                 
@@ -68,7 +70,25 @@ try {
             </ul>
         </div>
     </nav>
-    
+    <?php function ifConnectionExists($user1, $user2) { //function was not tried to verify friend connection
+    try {
+        $dbh = new PDO('sqlite:sql/database.db');
+        $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $stmt = $dbh->prepare('SELECT COUNT(*) AS count FROM Friend WHERE (user1_name = ? AND user2_name = ?)');
+        $stmt->execute([$user1, $user2]);
+
+        $result = $stmt->fetch();
+
+        return $result['count'] > 0;
+
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
+?>   
 <?php $today = date("d/m/Y H:i:s", strtotime('today')); ?>
     </div>
     <div class="center">
@@ -77,7 +97,7 @@ try {
              
              <?php if ($error_msg == null) { 
                  foreach ($accom as $row) {?>
-                
+
                     <div class= "divide">
                     <div class= "house_sec_1">
                     <h3>House: <?php echo $row['host_ac'] ?></h3>

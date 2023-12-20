@@ -13,10 +13,14 @@ try {
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $dbh->query('SELECT * FROM User');
     $user = $stmt->fetchAll();
-    $stmt = $dbh->prepare('SELECT * FROM Accommodation INNER JOIN City ON City.city_id =Accommodation.city INNER JOIN Ad ON Ad.accommodation= Accommodation.id INNER JOIN Reservation ON Reservation.ad_point_id=Ad.ad_id  /* INNER JOIN Budget ON Budget.ad_point_id = Ad.ad_id */ WHERE Reservation.guest=?');
+    $stmt = $dbh->prepare('SELECT * FROM Accommodation INNER JOIN City ON City.city_id =Accommodation.city INNER JOIN Ad ON Ad.accommodation= Accommodation.id INNER JOIN Reservation ON Reservation.ad_point_id=Ad.ad_id   INNER JOIN Budget ON Budget.ad_point_id = Ad.ad_id  WHERE Reservation.guest=?');
     $stmt->execute([$_SESSION['username'],]);
     $accom = $stmt->fetchAll();
-   
+    if (file_exists($userImage)) {
+        $imageSource = $userImage;
+    } else {
+        $imageSource = $defaultImage;
+    }
 
 
   } catch (PDOException $e) {
@@ -31,27 +35,36 @@ try {
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE-edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EasyWin Home</title>
+<title>My reservations</title>
 <link rel="stylesheet" href="styleReservations.css">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <head>
 <body>
-    <nav>
+<nav>
         <div class="menu">
             <div class="logo">
-                <a href="homepage.php">EasyWIN</a>
+                <a href="homepage.php">EasyInn</a>
             </div>
             <ul>
-            <?php if (!isset($_SESSION['username'])) { ?>   
+                
+                <?php if (!isset($_SESSION['username'])) { ?>   
                     <li><a class="backgroundcolor" href="login.php"> <i class='bx bxs-user'></i>  Login</a> </li>
                 <?php } else { ?>
-                        <li><a class="backgroundcolor" href="profile.php"><i class='bx bxs-user'></i>  Profile </a>  </li>
+                        <li>
+                            <a class="backgroundcolor" href="profile.php">
+                            <img src="<?php echo $imageSource; ?>">
+                                <span><?php echo $_SESSION['username'] ?></span>
+                            </a>
+                        </li>
+                <?php } ?>    
+
+                <?php if (isset($msg)) { ?>
+                    <p><?php echo $msg ?></p>
                 <?php } ?>
-                
     
             </ul>
         </div>
-    </nav>
+</nav>
     
 
     </div>
@@ -72,7 +85,7 @@ try {
                     <h4>Check in: <?php echo $row['date_in'] ?> </h4>
                     <h4>Check out: <?php echo $row['date_out'] ?> </h4>
                     <h4>Transportation type: <?php echo $row['transportation_type'] ?> </h4>
-                    <h4>Estimated Budget: <?php echo $row['total'] ?> </h4>
+                    <h4>Estimated Budget: <?php echo number_format((float)$row['total'],2,",","") ?> €</h4>
 
                     </div>
                     </div>

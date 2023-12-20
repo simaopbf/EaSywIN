@@ -158,10 +158,6 @@ a{
     margin-top: 25px;
 }
 
-.header_wrapper .cols_container .content ul li{
-    font-size: 1.3rem;
-}
-
 .header_wrapper .cols_container .right_col {
     height: 100%;
     overflow-y: auto;
@@ -170,15 +166,9 @@ a{
 
 .header_wrapper .cols_container .right_col .right-column-nav {
     display: flex;
-    align-items: center;
+    align-items:flex-end;
     padding: 30px 0;
-    justify-content: space-between;
-    flex-direction: column;
-}
-
-.header_wrapper .cols_container .right_col .right-column-nav ul{
-    display: flex;
-    gap: 20px;
+    justify-content: flex-end;
     flex-direction: column;
 }
 
@@ -194,7 +184,11 @@ a{
     padding: 10px 25px;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 20px;
+    margin-right: 20px;
+}
+
+h2{
+    color: #000000;
 }
 
 .header_wrapper .cols_container .right_col .right-column-nav ul li:nth-child(1) a{

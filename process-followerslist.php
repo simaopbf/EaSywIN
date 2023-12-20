@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
                 }
 
-                header('Location: list_users.php');
+                header('Location: followers.php');
                 exit();
             } else {
             }
@@ -42,5 +42,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 
-header('Location: list_users.php');
+header('Location: followers.php');
 exit();

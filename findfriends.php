@@ -4,6 +4,9 @@
   $userImage = "images/users/" . $row['username'] . ".jpg";
   $defaultImage = "profile.png";
 
+  $userImage = "images/users/" . $_SESSION['username'] . ".jpg";
+  $defaultImage = "profile.png";
+
   function checkIfFollowing($followedUsername){
     global $dbh;
 
@@ -27,6 +30,7 @@
         } else {
             $imageSource = $defaultImage;
         }
+    
         
     } catch (PDOException $e) {
         $error_msg = $e->getMessage();
@@ -46,6 +50,27 @@
 </head>
 
 <body>
+    <nav>
+            <div class="menu">
+                <div class="logo">
+                    <a href="homepage.php">EasyWIN</a>
+                </div>
+                <ul>
+                    <?php if (!isset($_SESSION['username'])) { ?>   
+                        <li><a class="backgroundcolor" href="login.php"> <i class='bx bxs-user'></i>  Login</a> </li>
+                    <?php } else { ?>
+                            <li>
+                                <a class="backgroundcolor" href="profile.php">
+                                <img src="<?php echo $imageSource; ?>">
+                                    <span><?php echo $_SESSION['username'] ?></span>
+                                </a>
+                            </li>
+                    <?php } ?>
+        
+                </ul>
+            </div>
+    </nav>
+    
     <div class ="find_friends_container">
         <div class ="find_friends_header">
             <div class="heading">Find Friends</div>

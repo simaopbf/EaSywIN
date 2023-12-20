@@ -83,7 +83,7 @@ CREATE TABLE Transportation_type(
 CREATE TABLE City(
     city_id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
-    meteorology TEXT NOT NULL,
+    meteorology TEXT NOT NULL REFERENCES Climate,
     average_cost_of_living REAL NOT NULL,
     lat REAL NOT NULL,
     lon REAL NOT NULL,
@@ -111,7 +111,7 @@ CREATE TABLE Budget(
 );
 
 CREATE TABLE Climate(
-    id TEXT PRIMARY KEY,
+    id_climate TEXT PRIMARY KEY,
     common_name TEXT NOT NULL,
     avg_cold TEXT NOT NULL,
     avg_hot TEXT NOT NULL,
@@ -127,22 +127,6 @@ Cost of living: https://www.numbeo.com/cost-of-living/
 Lat and Long: https://latitudelongitude.org/
 Meteorologia: https://en.wikipedia.org/wiki/K%C3%B6ppen_climate_classification 
 */
-
-INSERT INTO City VALUES (1,'Oporto','Csa',21.25,41.14961,-8.61099);
-INSERT INTO City VALUES (2,'Lisbon','Csa',23.71,38.71667,-9.13333);
-INSERT INTO City VALUES (3,'Madrid','BSk',24.19,40.4165,-3.70256);
-INSERT INTO City VALUES (4,'Barcelona','Csb',25.66,41.38879,2.15899);
-INSERT INTO City VALUES (5,'London','Cfb',42.33,51.50853,-0.12574);
-INSERT INTO City VALUES (6,'Paris','Cfb',35.90,48.85341,2.3488);
-INSERT INTO City VALUES (7,'Rome','Csa',29.09,41.89193,12.51133);
-INSERT INTO City VALUES (8,'Milano','Cfa',33.68,45.46427,9.18951);
-INSERT INTO City VALUES (9,'Berlin','Cfb',33.57,52.52437,13.41053);
-INSERT INTO City VALUES (10,'Frankfurt','Cfb',31.97,50.11552,8.68417);
-INSERT INTO City VALUES (11,'Vienna','Cfb',32.64,48.20849,16.37208);
-INSERT INTO City VALUES (12,'Amsterdam','Cfb',32.49,52.37403,4.88969);
-INSERT INTO City VALUES (13,'Utrecht','Cfb',31.65,52.09083,5.12222);
-INSERT INTO City VALUES (14,'Prague','Cfb',31.95,50.08804, 14.42076);
-INSERT INTO City VALUES (15,'Brussels','Cfb',32.64,50.85045, 4.34878);
 
 INSERT INTO Climate VALUES ("A","Tropical",">18ºC",">18ºC",">=60mm driest month");
 INSERT INTO Climate VALUES ("BWh","Hot Desert","15-25ºC","29-35ºC","<10mm monthly");
@@ -172,6 +156,25 @@ INSERT INTO Climate VALUES ("Dfc","Subartic without dry season","<0ºC","<15ºC"
 INSERT INTO Climate VALUES ("Dfd","Subartic extremely cold without dry season","<-38ºC","<10ºC","~30mm monthly");
 INSERT INTO Climate VALUES ("ET","Thundra","<-38ºC","-3-10ºC","~30mm monthly");
 INSERT INTO Climate VALUES ("EF","Glacial","<-38ºC","<0ºC","~30mm monthly");
+
+
+INSERT INTO City VALUES (1,'Oporto','Csa',21.25,41.14961,-8.61099);
+INSERT INTO City VALUES (2,'Lisbon','Csa',23.71,38.71667,-9.13333);
+INSERT INTO City VALUES (3,'Madrid','BSk',24.19,40.4165,-3.70256);
+INSERT INTO City VALUES (4,'Barcelona','Csb',25.66,41.38879,2.15899);
+INSERT INTO City VALUES (5,'London','Cfb',42.33,51.50853,-0.12574);
+INSERT INTO City VALUES (6,'Paris','Cfb',35.90,48.85341,2.3488);
+INSERT INTO City VALUES (7,'Rome','Csa',29.09,41.89193,12.51133);
+INSERT INTO City VALUES (8,'Milano','Cfa',33.68,45.46427,9.18951);
+INSERT INTO City VALUES (9,'Berlin','Cfb',33.57,52.52437,13.41053);
+INSERT INTO City VALUES (10,'Frankfurt','Cfb',31.97,50.11552,8.68417);
+INSERT INTO City VALUES (11,'Vienna','Cfb',32.64,48.20849,16.37208);
+INSERT INTO City VALUES (12,'Amsterdam','Cfb',32.49,52.37403,4.88969);
+INSERT INTO City VALUES (13,'Utrecht','Cfb',31.65,52.09083,5.12222);
+INSERT INTO City VALUES (14,'Prague','Cfb',31.95,50.08804, 14.42076);
+INSERT INTO City VALUES (15,'Brussels','Cfb',32.64,50.85045, 4.34878);
+
+
 
 
 INSERT INTO User VALUES ('testing','12345678','up0@fe.up.pt',1);

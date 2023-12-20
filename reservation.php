@@ -23,12 +23,14 @@ try {
     
     /*$stmt->execute(array($username));*/
     $user = $stmt->fetchAll();
-    $stmt = $dbh->query('SELECT * FROM Accommodation INNER JOIN City ON City.city_id =Accommodation.city');
-    $accom = $stmt->fetchAll();
-    $stmt = $dbh->query('SELECT * FROM City');
+    $stmt = $dbh->query('SELECT * FROM Accommodation 
+                        INNER JOIN City ON City.city_id =Accommodation.city 
+                        INNER JOIN Climate ON Climate.id = City.meteorology');
     $accom = $stmt->fetchAll();
     $stmt = $dbh->query('SELECT * FROM Ad');
     $ad = $stmt->fetchAll();
+
+
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();
   }
@@ -80,8 +82,10 @@ try {
                     </div>
                     <div class= "house_sec_2">
                     <h4>City: <?php echo $row['name'] ?></h4>
-                    <h4>Weather: <?php echo $row['meteorology'] ?></h4>
-                    <a href="climate_details.php?city_id=<?php echo $row['city_id'] ?>"><button>View Climate Details</button></a>
+                    <h4>Weather: <?php echo $row['common_name'] ?></h4>
+                        <?php
+                            echo "<p>Cold Months: {$row['avg_cold']} Hot Months: {$row['avg_hot']} Precipitation: {$row['precipitation']}</p>";
+                        ?>
                     <h4>Capacity: <?php echo $row['capacity'] ?> </h4>
                     <h4>id: <?php echo $row['id'] ?> </h4>
                     <h4>Average cost of living per day: <?php echo $row['average_cost_of_living'] ?> </h4>

@@ -67,9 +67,11 @@ CREATE TABLE Reservation(
     reservation_id INTEGER PRIMARY KEY AUTOINCREMENT,
     date_in DATE NOT NULL,
     date_out DATE NOT NULL,
+    ad_point_id INTEGER REFERENCES Ad,
     transportation_type TEXT NOT NULL REFERENCES Transportation_type,
     guest TEXT NOT NULL REFERENCES User,
     number_of_guests INTEGER NOT NULL,
+    host TEXT NOT NULL REFERENCES USER,
     capacity INTEGER NOT NULL REFERENCES Ad(capacity),
     CHECK (strftime('%s',date_out) > strftime('%s',date_in)),
     CHECK (number_of_guests<=capacity)
@@ -92,7 +94,7 @@ CREATE TABLE City(
 
 CREATE TABLE Point_of_interest(
     point_name TEXT PRIMARY KEY,
-    ponit_category TEXT NOT NULL,
+    point_category TEXT NOT NULL,
     city INTEGER NOT NULL REFERENCES City
 );
 
@@ -102,6 +104,7 @@ CREATE TABLE Budget(
     total INTEGER NOT NULL,
     /*type_of_transportation TEXT NOT NULL,*/
     duration INTEGER NOT NULL,
+    ad_point_id INTEGER REFERENCES Ad,
     /*cost_of_living INTEGER NOT NULL, 
     cost_per_km INTEGER NOT NULL,*/
     distance INTEGER NOT NULL,
@@ -174,7 +177,52 @@ INSERT INTO City VALUES (13,'Utrecht','Cfb',31.65,52.09083,5.12222);
 INSERT INTO City VALUES (14,'Prague','Cfb',31.95,50.08804, 14.42076);
 INSERT INTO City VALUES (15,'Brussels','Cfb',32.64,50.85045, 4.34878);
 
-
+INSERT INTO Point_of_interest VALUES ('Torre dos Clérigos','Monument',1);
+INSERT INTO Point_of_interest VALUES ('Ribeira','Place',1);
+INSERT INTO Point_of_interest VALUES ('Francesinha','Gastronomy',1);
+INSERT INTO Point_of_interest VALUES ('B034','Monument',1);
+INSERT INTO Point_of_interest VALUES ('Torre de Belém','Monument',2);
+INSERT INTO Point_of_interest VALUES ('Praça do Comércio','Place',2);
+INSERT INTO Point_of_interest VALUES ('Pastel de Belém','Gastronomy',2);
+INSERT INTO Point_of_interest VALUES ('Puerta de Alcala','Monument',3);
+INSERT INTO Point_of_interest VALUES ('Museo del Prado','Place',3);
+INSERT INTO Point_of_interest VALUES ('Tapas','Gastronomy',3);
+INSERT INTO Point_of_interest VALUES ('La Sagrada Familia','Monument',4);
+INSERT INTO Point_of_interest VALUES ('Parque Guell','Place',4);
+INSERT INTO Point_of_interest VALUES ('Crema catalana','Gastronomy',4);
+INSERT INTO Point_of_interest VALUES ('Big Ben','Monument',5);
+INSERT INTO Point_of_interest VALUES ('Madame Tussauds','Place',5);
+INSERT INTO Point_of_interest VALUES ('Tea','Gastronomy',5);
+INSERT INTO Point_of_interest VALUES ('Eiffel Tower','Monument',6);
+INSERT INTO Point_of_interest VALUES ('Musée du Louvre','Place',6);
+INSERT INTO Point_of_interest VALUES ('Baguette','Gastronomy',6);
+INSERT INTO Point_of_interest VALUES ('Fontana de Trevi','Monument',7);
+INSERT INTO Point_of_interest VALUES ('Colosseum','Place',7);
+INSERT INTO Point_of_interest VALUES ('Pizza','Gastronomy',7);
+INSERT INTO Point_of_interest VALUES ('Catedral de Milano','Monument',8);
+INSERT INTO Point_of_interest VALUES ('Galeria Vittorio Emanuele II','Place',8);
+INSERT INTO Point_of_interest VALUES ('Risotto alla Milanese','Gastronomy',8);
+INSERT INTO Point_of_interest VALUES ('Holocaust Memorial','Monument',9);
+INSERT INTO Point_of_interest VALUES ('East Side Gallery','Place',9);
+INSERT INTO Point_of_interest VALUES ('Currywurst','Gastronomy',9);
+INSERT INTO Point_of_interest VALUES ('Frankfurt Romer','Monument',10);
+INSERT INTO Point_of_interest VALUES ('Paulskirche','Place',10);
+INSERT INTO Point_of_interest VALUES ('Apfelwein','Gastronomy',10);
+INSERT INTO Point_of_interest VALUES ('Amalienbad','Monument',11);
+INSERT INTO Point_of_interest VALUES ('Belevedere Palace','Place',11);
+INSERT INTO Point_of_interest VALUES ('Sachertorte','Gastronomy',11);
+INSERT INTO Point_of_interest VALUES ('Holocaust Memorial Wlak','Monument',12);
+INSERT INTO Point_of_interest VALUES ('Red Light District','Place',12);
+INSERT INTO Point_of_interest VALUES ('Bitterballen','Gastronomy',12);
+INSERT INTO Point_of_interest VALUES ('Dom Tower','Monument',13);
+INSERT INTO Point_of_interest VALUES ('Railway Museum','Place',13);
+INSERT INTO Point_of_interest VALUES ('Stroopwafel','Gastronomy',13);
+INSERT INTO Point_of_interest VALUES ('Orloj','Monument',14);
+INSERT INTO Point_of_interest VALUES ('Prague Castel','Place',14);
+INSERT INTO Point_of_interest VALUES ('Wiener sausages','Gastronomy',14);
+INSERT INTO Point_of_interest VALUES ('Manneken Pis','Monument',15);
+INSERT INTO Point_of_interest VALUES ('Atomium','Place',15);
+INSERT INTO Point_of_interest VALUES ('Brussels Waffles','Gastronomy',15);
 
 
 /* INSERT INTO User VALUES ('testing','12345678','up0@fe.up.pt',1);

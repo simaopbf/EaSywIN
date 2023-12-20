@@ -10,7 +10,7 @@
     die($e->getMessage());
   }
 
-  function getUsersBySearch($search_name) {
+  function getUsersBySearch($search_name, $excludeUsername = '') {
     global $dbh;
 
     $query = "SELECT * FROM User WHERE 1";
@@ -21,6 +21,11 @@
       $params[] = "%$search_name%";
     }
 
+    if ($excludeUsername != '') {
+      $query .= ' AND username != ?';
+      $params[] = $excludeUsername;
+  }
+
     $stmt = $dbh->prepare($query);
     $stmt->execute($params);
     return $stmt->fetchAll();
@@ -28,8 +33,10 @@
 
   $search_name = isset($_GET['search_name']) ? $_GET['search_name'] : '';
 
+  $loggedInUsername = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+
   try {
-    $users = getUsersBySearch($search_name);
+    $users = getUsersBySearch($search_name, $loggedInUsername);
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();
   }

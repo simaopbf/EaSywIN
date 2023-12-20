@@ -4,21 +4,33 @@
   $userImage = "images/users/" . $row['username'] . ".jpg";
   $defaultImage = "profile.png";
 
+  function checkIfFollowing($followedUsername){
+    global $dbh;
 
-try {
-    $dbh = new PDO('sqlite:sql/database.db');
-    $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $followerUsername = $_SESSION['username'];
 
-    if (file_exists($userImage)) {
-        $imageSource = $userImage;
-    } else {
-        $imageSource = $defaultImage;
+    $stmt = $dbh->prepare("SELECT * FROM Friend WHERE (user1_name = ? AND user2_name = ?)");
+    $stmt->execute([$followerUsername, $followedUsername]);
+    $existingConnection = $stmt->fetch();
+
+    return $existingConnection !== false;
     }
-    
-  } catch (PDOException $e) {
-    $error_msg = $e->getMessage();
-  }
+
+
+    try {
+        $dbh = new PDO('sqlite:sql/database.db');
+        $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        if (file_exists($userImage)) {
+            $imageSource = $userImage;
+        } else {
+            $imageSource = $defaultImage;
+        }
+        
+    } catch (PDOException $e) {
+        $error_msg = $e->getMessage();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -51,33 +63,43 @@ try {
                     <?php if (isset($users) && is_array($users) && count($users) > 0) { ?>
                         <div class = "user_row">
                             <?php foreach ($users as $row) { ?>
-                                <div class="line">
+                                <form action="process-follow.php" method="post">
                                     <div class="user_info">
                                         <?php
-                                        $userImage = "images/users/" . $row['username'] . ".jpg";
-                                        $defaultImage = "profile.png";
+                                            $userImage = "images/users/" . $row['username'] . ".jpg";
+                                            $defaultImage = "profile.png";
 
-                                        try {
-                                            $dbh = new PDO('sqlite:sql/database.db');
-                                            $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-                                            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                            try {
+                                                $dbh = new PDO('sqlite:sql/database.db');
+                                                $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+                                                $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                                            if (file_exists($userImage)) {
-                                                $imageSource = $userImage;
-                                            } else {
-                                                $imageSource = $defaultImage;
+                                                if (file_exists($userImage)) {
+                                                    $imageSource = $userImage;
+                                                } else {
+                                                    $imageSource = $defaultImage;
+                                                }
+                                                
+                                            } catch (PDOException $e) {
+                                                $error_msg = $e->getMessage();
                                             }
+                                            ?>
                                             
-                                        } catch (PDOException $e) {
-                                            $error_msg = $e->getMessage();
-                                        }
+                                            <input type="hidden" name="followed_username" value="<?php echo $row['username']; ?>">
+                                            <img src="<?php echo $imageSource; ?>">
+                                            <span><?php echo $row['username']; ?></span>   
+
+                                            <?php
+                                            $isFollowing = checkIfFollowing($row['username']);
+                                            if ($isFollowing) {
+                                                echo '<button type="submit" class="action-unfollow">Unfollow</button>';
+                                            } else {
+                                                echo '<button type="submit" class="action-follow">Follow</button>';
+                                            }
                                         ?>
-                                        
-                                        <img src="<?php echo $imageSource; ?>">
-                                        <span><?php echo $row['username']; ?></span>   
                                     </div>
-                                    <button class="action-follow">Follow</button> 
-                                    </div>
+
+                                </form> 
                             <?php } ?>
                         </div>
                     <?php } else {

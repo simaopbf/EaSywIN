@@ -28,9 +28,9 @@ CREATE TABLE User(
 
 CREATE TABLE Friend(
     connection_id INTEGER PRIMARY KEY,
-    user1_id INTEGER REFERENCES User(id),
-    user2_id INTEGER REFERENCES User(id),
-    CHECK(user1_id <> user2_id)
+    user1_name TEXT REFERENCES User(username),
+    user2_name TEXT REFERENCES User(username),
+    CHECK(user1_name <> user2_name)
 );
 
 /*tirar host e guest

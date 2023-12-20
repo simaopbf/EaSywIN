@@ -23,9 +23,7 @@ body {
     align-items: center;
 }
 .find_friends_container{
-    width: 400px;
-    height: 70vh;
-    margin-top: 20vh;
+    margin-top: 350px;
     margin-bottom: 20vh;
     background:transparent;
     border: 2px solid rgba(255, 255, 255, .2);
@@ -112,7 +110,7 @@ body {
     align-items: center;
 }
 
-.line{
+.user_row form{
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -153,6 +151,26 @@ body {
 .action-follow:hover{
     background:whitesmoke;
     color:#000000;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.action-unfollow{
+    border: 2px solid black;
+    outline: none;
+    background: darkgray;
+    border-radius: 20px;
+    color: black;;
+    height: 40px;
+    width: 80px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    margin-left: 100px;
+}
+
+.action-unfollow:hover{
+    background:black;
+    color:whitesmoke;
     font-weight: bolder;
     cursor: pointer;
 }

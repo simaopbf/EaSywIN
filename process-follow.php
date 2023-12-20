@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $follower_username = $_SESSION['username'];
-
+            // Retrieve followed 
             $stmt_check_user = $dbh->prepare("SELECT * FROM User WHERE username = ?");
             $stmt_check_user->execute([$followed_username]);
             $followed_user = $stmt_check_user->fetch();

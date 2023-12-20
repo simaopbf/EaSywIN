@@ -89,7 +89,7 @@ try {
     
     <div id = "howitworks">
         <div class="divide">
-            <div class="image_reserve"><img src="airbnb alugar.png"></div>
+            <div class="image_reserve"><img src="images/reserve.png"></div>
             <div class="TextHowItWorks">
                 <h3>Make reservations</h3>
                 <p>See which friends have available accomodations for you and decide for yourself based on weather, average costs and time of the year </p>
@@ -100,12 +100,12 @@ try {
                 <h3>Make Announcements</h3>
                 <p>Decide whenever you want to announce your house for your friends to visit you</p>
             </div>
-             <div class="image_reserve"><img src="airbnb alugar.png"></div>
+             <div class="image_reserve"><img src="images/announce.png"></div>
         </div>
         <div class="divide">
-            <div class="image_reserve"><img src="airbnb alugar.png"></div>
+            <div class="image_reserve"><img src="images/connect.png"></div>
             <div class="TextHowItWorks">
-                <h3>Make a </h3>
+                <h3>Connect with friends </h3>
                 <p>See which friends have available accomodations for you and decide for yourself based on weather, average costs and time of the year </p>
             </div>
         </div>

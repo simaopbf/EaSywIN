@@ -5,11 +5,11 @@ $msg = $_SESSION['msg'];
 unset($_SESSION['msg']);
 
 try {
+    //Database Connection
     $dbh = new PDO('sqlite:sql/database.db');
     $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $dbh->query('SELECT * FROM User /*WHERE image IS NOT NULL AND image <> ""*/');
-    /*$stmt->execute(array($username));*/
+    $stmt = $dbh->query('SELECT * FROM User ');
     $user = $stmt->fetchAll();
     $stmt_cities = $dbh->prepare('SELECT * FROM City ORDER BY name ASC');
     $stmt_cities->execute();
@@ -18,7 +18,7 @@ try {
   } catch (PDOException $e) {
     $error_msg = $e->getMessage();
   }
-// Your HTML and form code for adding accommodations here
+
 ?>
 
 <!DOCTYPE html>

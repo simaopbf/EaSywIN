@@ -4,7 +4,7 @@
   $userImage = "images/users/" . $row['username'] . ".jpg";
   $defaultImage = "profile.png";
 
-  function checkIfFollowing($followedUsername){
+    function checkIfFollowing($followedUsername){
     global $dbh;
 
     $followerUsername = $_SESSION['username'];

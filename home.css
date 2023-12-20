@@ -152,12 +152,11 @@ nav .menu{
     justify-content: center;
     height: calc(100vh - 70px);
     
-
 }
 .image_reserve{
-    width: 50%;
-    
-
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 .TextHowItWorks{
     width:50%;

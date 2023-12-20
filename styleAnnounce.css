@@ -11,10 +11,7 @@
 body {
     display: flex;
     justify-content: center;
-    min-height: 100vh;
-    background: url(pexels-patrik-felker-6220559.jpg) no-repeat;
-    background-size: cover;
-    background-position: center;
+    background: url(pexels-patrik-felker-6220559.jpg) no-repeat center/cover fixed;;
     font-size: 16px;
 }
 
@@ -247,7 +244,7 @@ nav .menu {
     border-radius: 40px;
     font-size: 16px;
     color: #fff;
-    padding: 10px 20px; /* Adjust padding as needed */
+    padding: 10px 20px;
     box-sizing: border-box;
 }
 
@@ -261,7 +258,7 @@ nav .menu {
     border-radius: 40px;
     font-size: 16px;
     color: #fff;
-    padding: 10px 20px; /* Adjust padding as needed */
+    padding: 10px 20px;
     box-sizing: border-box;
 }
 
@@ -277,7 +274,8 @@ nav .menu {
     font-size: 16px;
     color: #fff;
     font-weight: 600;
-    margin-top: 0px;
+    margin: 20px auto 0;
+    display: block;;
 }
 
 .wrapper .input-box button:hover {

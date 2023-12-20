@@ -37,7 +37,7 @@ try {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EasyWin FindFriends</title>
+    <title>Followers</title>
     <link rel="stylesheet" href="findfriends.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -46,7 +46,7 @@ try {
     <nav>
         <div class="menu">
             <div class="logo">
-                <a href="homepage.php">EasyWIN</a>
+                <a href="homepage.php">EasyInn</a>
             </div>
             <ul>
                 <li><a href="#">Maps</a> </li>

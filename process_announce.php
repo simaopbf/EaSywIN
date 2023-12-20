@@ -25,7 +25,6 @@ try {
     $descrip = $_POST['descrip'];
     $priv_publ = $_POST['priv_publ'];
 
-    var_dump($accommodations[0]['city']);
     // Insert data into the Ad table
     $stmt_insert = $dbh->prepare('INSERT INTO Ad (host_ad, city, date_on, date_off, descrip, priv_publ, accommodation) VALUES (?, ?, ?, ?, ?, ?, ?)');
     $stmt_insert->execute([$host_id, $accommodations[0]['city'], $date_on, $date_off, $descrip, $priv_publ, $accommodation_id]);

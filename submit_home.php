@@ -30,7 +30,6 @@ try {
     $capacity = $_POST['capacity'];
     $accommod_pic=$_POST['accommod_pic'];
     saveAccommodPic($address);
-    var_dump($address);
     // Get the ID of the selected city
     $stmt_get_city_id = $dbh->prepare('SELECT city_id FROM City WHERE name = ?');
     $stmt_get_city_id->execute([$city]);

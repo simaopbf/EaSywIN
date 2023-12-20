@@ -38,7 +38,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="widt=device-width, initial-scale=1.0">
-    <title> Login</title>
+    <title>City</title>
     <link rel="stylesheet" href="style_city.css">
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -48,7 +48,7 @@
     <nav>
         <div class="menu">
             <div class="logo">
-                <a href="homepage.php">EasyWIN</a>
+                <a href="homepage.php">EasyInn</a>
             </div>
         </div>
     </nav>
@@ -66,7 +66,7 @@
                         <?php
                             echo "<p>Cold Months: {$city['avg_cold']} Hot Months: {$city['avg_hot']} Precipitation: {$city['precipitation']}</p>";
                         ?>
-                    <h4>Points of Interest: </h4>
+                    <h3>Points of Interest </h3>
                     <h4>Monuments:
                         <?php 
                         foreach ($monument as $monu) {
